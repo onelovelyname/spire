@@ -1,0 +1,23 @@
+{
+  "name": "Spire",
+  "version": "0.0.1",
+  "authors": [
+    "Melanie Gin <melaniegin1@gmail.com>"
+  ],
+  "description": "Spire helps you set and track quantifiable goals",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "underscore": "~1.8.3",
+    "backbone": "~1.2.1"
+  }
+}
