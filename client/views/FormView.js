@@ -1,9 +1,16 @@
 var FormView = Backbone.View.extend({
 
-  el: "#create-habit-container",
+  el: "#create-habit-form",
 
   events: {
     "submit #create-habit-form": "handleSubmit",
+  },
+
+  initialize: function() {
+    this.render();
+  },
+
+  render: function() {
   },
 
   handleSubmit: function(event) {
@@ -20,8 +27,6 @@ var FormView = Backbone.View.extend({
       quantity: habitQuantity,
       time: habitTime
     });
-
-    console.log("habitObject", habitObject);
 
     // save input to Habit model
 
