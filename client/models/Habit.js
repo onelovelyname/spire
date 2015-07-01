@@ -4,6 +4,8 @@ var Habit = Backbone.Model.extend({
     action: "",
     quantity: 0,
     time: "days"
-  }
+  },
+
+  url: "api/habits"
 
 });

@@ -11,19 +11,28 @@ var FormView = Backbone.View.extend({
     
     event.preventDefault();
     
-    var habitAction = event.target[0].value;
-    var habitQuantity = event.target[1].value;
-    var habitTime = event.target[2].value;
+    var habitAction = this.$('#action').val();
+    var habitQuantity = this.$('#quantity').val();
+    var habitTime = this.$('#time').val();
 
-    var habitObject = {
+    var habitObject = new Habit({
       action: habitAction,
       quantity: habitQuantity,
       time: habitTime
-    };
+    });
 
     console.log("habitObject", habitObject);
 
     // save input to Habit model
+
+    habitObject.save({}, {
+      success: function(model, response) {
+        console.log("model: ", model);
+      },
+      error: function(model, response) {
+        console.error("error", response);
+      }
+    });
 
   }
 

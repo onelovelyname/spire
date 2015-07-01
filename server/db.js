@@ -26,3 +26,5 @@ db.knex.schema.hasTable('habits').then(function(exists){
     });
   }
 });
+
+module.exports = db;

@@ -1,4 +1,5 @@
 var bodyParser = require('body-parser');
+var appController = require('../app/appController.js');
 
 module.exports = function(app, express) {
 
@@ -8,5 +9,7 @@ module.exports = function(app, express) {
   app.get('/', function(request, response) {
     response.send("hello!");
   });
+
+  app.post('/api/habits', appController.createHabits);
 
 };
