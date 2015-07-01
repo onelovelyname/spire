@@ -26,10 +26,10 @@ var FormView = Backbone.View.extend({
     // save input to Habit model
 
     habitObject.save({}, {
-      success: function(model, response) {
-        console.log("model: ", model);
+      success: function(habit) {
+        console.log("habit: ", habit);
       },
-      error: function(model, response) {
+      error: function(error) {
         console.error("error", response);
       }
     });
