@@ -1,5 +1,9 @@
 var Habits = Backbone.Collection.extend({
   
-  model: Habit
+  model: Habit,
+
+  url: "api/habits"
 
 });
+
+var habitsCollection = new Habits();
