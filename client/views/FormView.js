@@ -1,20 +1,19 @@
 var FormView = Backbone.View.extend({
 
-  el: "#create-habit-form",
+  tagName: "form",
 
   events: {
-    "submit #create-habit-form": "handleSubmit",
+    "submit": "handleSubmit",
   },
 
   initialize: function () {
     this.render();
   },
 
-  template: _.template("<p>I want to build a habit by <input type='text' id='action' placeholder='Enter action' autofocus/> <input type='text' id='quantity' placeholder='Enter quantity'/> times per <input type='text' id='time' placeholder='Enter time'/></p><button action='submit'>Submit</button>"),
+  template: _.template("<h2>Create Habit</h2><p>I want to build a habit by <input type='text' id='action' placeholder='Enter action' autofocus/> <input type='text' id='quantity' placeholder='Enter quantity'/> times per <input type='text' id='time' placeholder='Enter time'/></p><button action='submit'>Submit</button>"),
 
   render: function () {
-    this.$el.html(this.template());
-    return this;
+    return this.$el.html(this.template()).prependTo($('body'));
   },
 
   handleSubmit: function (event) {
