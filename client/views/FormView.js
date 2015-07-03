@@ -19,9 +19,6 @@ var FormView = Backbone.View.extend({
   handleSubmit: function (event) {
     // get input from form
     event.preventDefault();
-
-    console.log("habitsCollection", habitsCollection);
-
     var habitAction = this.$('#action').val();
     var habitQuantity = this.$('#quantity').val();
     var habitTime = this.$('#time').val();
