@@ -23,6 +23,19 @@ db.knex.schema.hasTable('habits').then(function(exists){
       habit.string('time', 10);
     }).then(function(table) {
       console.log("Created Habits Table", table);
+
+      db.knex.schema.hasTable('habits_completion').then(function(exists){
+        if(!exists) {
+          db.knex.schema.createTable('habits_completion', function(habitCompletion){
+            habitCompletion.integer('habit_id').references('habits.id');
+            habitCompletion.date('start_date');
+            habitCompletion.date('end_date');
+            habitCompletion.boolean('status');
+          }).then(function(table){
+            console.log('Created Habits Completion Table', table);
+          });
+        }
+      });
     });
   }
 });
