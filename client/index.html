@@ -8,15 +8,41 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,300' rel='stylesheet' type='text/css'>
   </head>
   <body>
+
+  <!-- HANDLEBARS TEMPLATES -->
+
+  <script id="formTemplate" type="text/x-handlebars-template">
+    <h2>Create Habit</h2>
+    <p>I want to build a habit by 
+      <input type='text' id='action' placeholder='Enter action' autofocus/> 
+      <input type='text' id='quantity' placeholder='Enter quantity'/> 
+      times per 
+      <input type='text' id='time' placeholder='Enter time'/>
+    </p>
+    <button action='submit'>Submit</button>
+  </script>
+
+  <script id="habitTemplate" type="text/x-handlebars-template">
+    <td>{{ action }}</td>
+    <td>{{ quantity }}</td>
+    <td>{{ time }}</td>
+  </script>
+
+
+  <!-- DEPENDENCIES -->
+
     <script src="bower_components/underscore/underscore-min.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/backbone/backbone-min.js"></script>
     <script src="bower_components/marionette/lib/backbone.marionette.min.js"></script>
+    <script src="bower_components/handlebars/handlebars.min.js"></script>
+
     <script src="app.js"></script>
     <script src="models/Habit.js"></script>
     <script src="collections/Habits.js"></script>
     <script src="views/FormView.js"></script>
     <script src="views/HabitsView.js"></script>
     <script src="views/HabitView.js"></script>
+  
   </body>
 </html>

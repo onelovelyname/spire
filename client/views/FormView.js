@@ -12,7 +12,7 @@ app.FormView = Backbone.View.extend({
     this.render();
   },
 
-  template: _.template("<h2>Create Habit</h2><p>I want to build a habit by <input type='text' id='action' placeholder='Enter action' autofocus/> <input type='text' id='quantity' placeholder='Enter quantity'/> times per <input type='text' id='time' placeholder='Enter time'/></p><button action='submit'>Submit</button>"),
+  template: Handlebars.compile($('#formTemplate').html()),
 
   render: function () {
     return this.$el.html(this.template()).prependTo($('body'));
