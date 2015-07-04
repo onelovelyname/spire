@@ -1,4 +1,6 @@
-var HabitView = Backbone.View.extend({
+var app = app || {};
+
+app.HabitView = Backbone.View.extend({
 
   tagName: 'tr',
 

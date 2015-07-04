@@ -1,4 +1,6 @@
-var FormView = Backbone.View.extend({
+var app = app || {};
+
+app.FormView = Backbone.View.extend({
 
   tagName: "form",
 
@@ -41,4 +43,4 @@ var FormView = Backbone.View.extend({
 
 });
 
-new FormView();
+new app.FormView();

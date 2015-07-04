@@ -1,4 +1,6 @@
-var Habit = Backbone.Model.extend({
+var app = app || {};
+
+app.Habit = Backbone.Model.extend({
   
   defaults: {
     action: "",

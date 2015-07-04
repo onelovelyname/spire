@@ -1,9 +1,11 @@
-var Habits = Backbone.Collection.extend({
+var app = app || {};
+
+app.Habits = Backbone.Collection.extend({
   
-  model: Habit,
+  model: app.Habit,
 
   url: "api/habits"
 
 });
 
-var habitsCollection = new Habits();
+var habitsCollection = new app.Habits();

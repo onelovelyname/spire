@@ -1,4 +1,6 @@
-var HabitsView = Backbone.View.extend({
+var app = app || {};
+
+app.HabitsView = Backbone.View.extend({
   
   tagName: "table",
 
@@ -10,10 +12,10 @@ var HabitsView = Backbone.View.extend({
   render: function() {
     return this.$el.html('<h2>View Habits</h2>').append(
       this.collection.map(function(habit){
-        return new HabitView({model: habit}).render();
+        return new app.HabitView({model: habit}).render();
       })
     ).appendTo($('body'));
   }
 });
 
-new HabitsView({collection: habitsCollection});
+new app.HabitsView({collection: habitsCollection});
