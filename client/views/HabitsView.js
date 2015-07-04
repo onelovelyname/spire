@@ -8,8 +8,6 @@ var HabitsView = Backbone.View.extend({
   },
 
   render: function() {
-    //return this.$el.html(this.template()).appendTo($('body'));
-    console.log("1 render of HabitsView");
     return this.$el.html('<h2>View Habits</h2>').append(
       this.collection.map(function(habit){
         return new HabitView({model: habit}).render();
