@@ -11,3 +11,20 @@ app.HabitView = Backbone.View.extend({
   }
   
 });
+
+
+// app.HabitView = Marionette.ItemView.extend({
+
+//   // template: _.template('<td>(<%= action %>)</td><td>(<%= quantity %>)</td><td>(<%= time %>)</td>'),
+  
+//   template: Handlebars.compile($('#habitTemplate').html()),
+
+//   templateHelpers: function() {
+//     return {
+//       action: this.model.get('action'),
+//       quantity: this.model.get('quantity'),
+//       time: this.model.get('time')
+//     };
+//   }
+
+// });
