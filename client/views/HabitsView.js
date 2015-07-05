@@ -1,7 +1,34 @@
 var app = app || {};
 
 //////////////////////////////////////////////////////////
-////////////    Backbone Implementation     ////////////
+////////////    Marionette Implementation     ////////////
+//////////////////////////////////////////////////////////
+
+app.HabitsView = Marionette.CollectionView.extend({
+  
+  tagName: "table",
+  
+  childView: app.HabitView,
+  
+  collection: habitsCollection,
+
+  childEvents: {
+    render: function() {
+      console.log('A childView has been rendered!');
+    }
+  },
+
+  initialize: function() {
+    console.log('Habits View initialized', this.render().el);
+    $('#view-habits').append(this.render().el);
+  }
+
+});
+
+var habitsView = new app.HabitsView();
+
+//////////////////////////////////////////////////////////
+////////////    Backbone Implementation     //////////////
 //////////////////////////////////////////////////////////
 
 // app.HabitsView = Backbone.View.extend({
@@ -38,31 +65,3 @@ var app = app || {};
 // });
 
 // new app.HabitsView({collection: habitsCollection});
-
-//////////////////////////////////////////////////////////
-////////////    Marionette Implementation     ////////////
-//////////////////////////////////////////////////////////
-
-app.HabitsView = Marionette.CollectionView.extend({
-  
-  tagName: "table",
-  
-  childView: app.HabitView,
-  
-  collection: habitsCollection,
-
-  childEvents: {
-    render: function() {
-      console.log('A childView has been rendered!');
-    }
-  },
-
-  initialize: function() {
-    console.log('Habits View initialized', this.render().el);
-    $('#view-habits').append(this.render().el);
-  }
-
-});
-
-var habitsView = new app.HabitsView();
-

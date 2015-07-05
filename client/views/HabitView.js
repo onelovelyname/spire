@@ -1,23 +1,10 @@
 var app = app || {};
 
-// app.HabitView = Backbone.View.extend({
-
-//   tagName: 'tr',
-
-//   template: Handlebars.compile($('#habitTemplate').html()),
-
-//   render: function() {
-//     return this.$el.html(this.template(this.model.attributes));
-//   }
-  
-// });
-
-/////////////////
-
+//////////////////////////////////////////////////////////
+////////////    Marionette Implementation     ////////////
+//////////////////////////////////////////////////////////
 
 app.HabitView = Marionette.ItemView.extend({
-
-  // template: _.template('<td>(<%= action %>)</td><td>(<%= quantity %>)</td><td>(<%= time %>)</td>'),
 
   template: Handlebars.compile($('#habitTemplate').html()),
 
@@ -32,5 +19,20 @@ app.HabitView = Marionette.ItemView.extend({
     };
   },
 
-
 });
+
+//////////////////////////////////////////////////////////
+////////////    Backbone Implementation     //////////////
+//////////////////////////////////////////////////////////
+
+// app.HabitView = Backbone.View.extend({
+
+//   tagName: 'tr',
+
+//   template: Handlebars.compile($('#habitTemplate').html()),
+
+//   render: function() {
+//     return this.$el.html(this.template(this.model.attributes));
+//   }
+  
+// });
