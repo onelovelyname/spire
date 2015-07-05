@@ -1,5 +1,9 @@
 var app = app || {};
 
+//////////////////////////////////////////////////////////
+////////////    Backbone Implementation     ////////////
+//////////////////////////////////////////////////////////
+
 // app.HabitsView = Backbone.View.extend({
   
 //   tagName: "table",
@@ -35,11 +39,13 @@ var app = app || {};
 
 // new app.HabitsView({collection: habitsCollection});
 
-/////////////////
+//////////////////////////////////////////////////////////
+////////////    Marionette Implementation     ////////////
+//////////////////////////////////////////////////////////
 
 app.HabitsView = Marionette.CollectionView.extend({
   
-  tagName: "tbody",
+  tagName: "table",
   
   childView: app.HabitView,
   
@@ -52,8 +58,8 @@ app.HabitsView = Marionette.CollectionView.extend({
   },
 
   initialize: function() {
-    console.log('Habits View initialized');
-    $('table').append(this.render().el);
+    console.log('Habits View initialized', this.render().el);
+    $('#view-habits').append(this.render().el);
   }
 
 });
