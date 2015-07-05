@@ -1,9 +1,25 @@
 var Habit = require('./habitModel');
 module.exports = {
   
-  saveHabit: function(habit) {
+  getHabits: function() {
+    
     return new Promise(function(resolve, reject) {
-      // save habit
+      
+      new Habit().fetchAll()
+      .then(function(habits) {
+        resolve(habits);
+      }).catch(function(error) {
+        reject(error);
+      });
+
+    });
+  
+  },
+
+  saveHabit: function(habit) {
+
+    return new Promise(function(resolve, reject) {
+
       new Habit({
         'action': habit.action,
         'quantity': habit.quantity,
@@ -15,6 +31,7 @@ module.exports = {
         .catch(function(error){
           reject(error);
         });
+        
     });
   }
 

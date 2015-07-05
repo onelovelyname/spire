@@ -6,9 +6,7 @@ module.exports = function(app, express) {
   app.use(bodyParser.json());
   app.use(express.static(__dirname + '/../../client'));
 
-  app.get('/', function(request, response) {
-    response.send("hello!");
-  });
+  app.get('/api/habits', appController.fetchHabits);
 
   app.post('/api/habits', appController.createHabits);
 

@@ -19,8 +19,20 @@ app.HabitsView = Marionette.CollectionView.extend({
   },
 
   initialize: function() {
-    console.log('Habits View initialized', this.render().el);
     $('#view-habits').append(this.render().el);
+  },
+
+  onBeforeRender: function() {
+    // send query to server for all habits in db with given user id
+    // add each habit into collection prior to render
+    this.collection.fetch({
+      success: function(collection) {
+        console.log("habits from db: ", collection);
+      },
+      error: function(error) {
+        console.error("There was an error fetching your habits: ", error);
+      }
+    });
   }
 
 });
