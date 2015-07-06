@@ -31,10 +31,20 @@ app.FormView = Marionette.ItemView.extend({
       action: habitAction,
       quantity: habitQuantity,
       //time: habitTime,
-      status: 0
     }, {
       success: function (habit) {
-        console.log("habit: ", habit);
+        console.log("habit in FormView");
+        var newHabitCompletion = {
+          "habit_id": habit.get("id")
+        };
+        new app.HabitCompletion(newHabitCompletion).save({}, {
+          success: function(habitCompletion) {
+            console.log("habitCompletion in FormView: ", habitCompletion);
+          },
+          error: function(error) {
+            console.error("error", error);
+          }
+        });
       },
       error: function (error) {
         console.error("error", error);

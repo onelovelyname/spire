@@ -27,10 +27,10 @@
     <table>
       <thead>
         <tr>
+          <th>Completion</th>
           <th>Action</th>
           <th>Quantity</th>
           <th>Status</th>
-          <th>Completion</th>
         </tr>
       </thead>
       <tbody></tbody>
@@ -38,11 +38,13 @@
   </script>
   
   <script id="habitTemplate" type="text/x-handlebars-template">
+    <td><button id="{{action}}">Complete</button></td>
     <td>{{ action }}</td>
     <td>{{ quantity }}</td>
-    <td>{{ status }}</td>
-    <td><button id="{{action}}">Complete</button></td>
+    <td> Get Status </td>
   </script>
+
+
     
 
   <!-- DEPENDENCIES -->
@@ -55,6 +57,7 @@
 
     <script src="app.js"></script>
     <script src="models/Habit.js"></script>
+    <script src="models/HabitCompletion.js"></script>
     <script src="collections/Habits.js"></script>
     <script src="views/FormView.js"></script>
     <script src="views/HabitView.js"></script>

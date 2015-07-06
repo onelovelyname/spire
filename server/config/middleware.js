@@ -7,7 +7,10 @@ module.exports = function(app, express) {
   app.use(express.static(__dirname + '/../../client'));
 
   app.get('/api/habits', appController.fetchHabits);
+  app.post('/api/habits', appController.createInitialHabit);
 
-  app.post('/api/habits', appController.createHabits);
+  app.get('/api/habitCompletion', appController.getHabitCompletion);
+  app.post('/api/habitCompletion', appController.createHabitCompletion);
+
 
 };

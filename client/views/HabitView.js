@@ -6,16 +6,34 @@ var app = app || {};
 
 app.HabitView = Marionette.ItemView.extend({
 
-  template: Handlebars.compile($('#habitTemplate').html()),
+  //template: Handlebars.compile($('#habitTemplate').html()),
+  template: _.template("<td><button id='<%= action %>'>Complete</button></td><td><%= action %></td><td><%= quantity %></td><td><%= getStatus() %></td>"),
 
   tagName: 'tr',
   
   templateHelpers: function() {
 
+    var modelId = this.model.get("id");
+    
     return {
+
+      getStatus: function() {
+
+        console.log("modelId: ", modelId);
+
+        //return "Get Status working";
+
+        // send ajax request to server looking for status in habits_completion table given habit id 
+        var status = $.get("/api/habitCompletion", { "habit_id": modelId })
+          .done(function(data) {
+            console.log("data from Ajax request in HabitView: ", data);
+            return data;
+          });
+        return status;
+
+      },
       action: this.model.get('action'),
-      quantity: this.model.get('quantity'),
-      status: this.model.get('status')
+      quantity: this.model.get('quantity')
     };
   },
 
