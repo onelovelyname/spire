@@ -48,9 +48,10 @@ app.HabitView = Marionette.ItemView.extend({
   },
 
   updateStatus: function(event) {
-    console.log('event target id in HabitView: ', event.target.id);
-    // update status property in model
-    // send post request to server to insert into habit_completion table
+    console.log('event target action in HabitView: ', event.target.id);
+    // update status property in Habit Completion model
+
+    // send put request to api to update habit_completion table
   }
 
 });

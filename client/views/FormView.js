@@ -33,9 +33,11 @@ app.FormView = Marionette.ItemView.extend({
       //time: habitTime,
     }, {
       success: function (habit) {
-        console.log("habit in FormView");
+        console.log("habit in FormView", habit);
         var newHabitCompletion = {
-          "habit_id": habit.get("id")
+          "habit_id": habit.get("id"),
+          "quantity": Number(habit.get("quantity")),
+          "status": 0
         };
         new app.HabitCompletion(newHabitCompletion).save({}, {
           success: function(habitCompletion) {

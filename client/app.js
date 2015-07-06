@@ -6,3 +6,14 @@ app.on('start', function() {
 });
 
 app.start();
+
+/////////////////////////////////////////
+///////// From Backbone Rails ///////////
+/////////////////////////////////////////
+
+app.addRegions({
+  headerRegion: "#header-region",
+  mainRegion: "#main-region",
+  footerRegion: "#footer-region"
+});
+

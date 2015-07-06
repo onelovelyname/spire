@@ -10,7 +10,7 @@ module.exports = {
         "habit_id": habitCompletion.habit_id,
         "start_date": "today",
         "end_date": "tomorrow",
-        "status": 0
+        "status": habitCompletion.status / (habitCompletion.quantity)
       }).save({}, {method: 'insert'})
         .then(function(habitCompletion) {
           resolve(habitCompletion);
