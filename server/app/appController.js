@@ -25,8 +25,12 @@ module.exports = {
     });
   },
 
-  getHabitCompletion: function(request, response) {
+  fetchHabitCompletion: function(request, response) {
     console.log("request to getHabitCompletion heard!", request.query);
+    var query = request.query;
+    habitCompletionController.getHabitCompletion(query).then(function(habitCompletion){
+      response.status(200).send(habitCompletion);
+    });
   },
 
   createHabitCompletion: function(request, response) {

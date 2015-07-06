@@ -20,6 +20,23 @@ module.exports = {
         });
     });
 
+  },
+
+  getHabitCompletion: function(query) {
+
+    return new Promise(function(resolve, reject) {
+
+      new HabitCompletion().query({ where: { habit_id: query.habit_id } })
+        .fetch()
+        .then(function(habitCompletion) {
+          resolve(habitCompletion);
+        })
+        .catch(function(error) {
+          console.error("Could not fetch habitCompletion for that habit id");
+        });
+
+    });
+
   }
 
 };

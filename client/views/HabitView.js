@@ -19,18 +19,21 @@ app.HabitView = Marionette.ItemView.extend({
 
       getStatus: function() {
 
-        console.log("modelId: ", modelId);
-
-        //return "Get Status working";
-
         // send ajax request to server looking for status in habits_completion table given habit id 
         var status = $.get("/api/habitCompletion", { "habit_id": modelId })
-          .done(function(data) {
-            console.log("data from Ajax request in HabitView: ", data);
+          .then(function(data) {
+            console.log("data: ", data);
             return data;
           });
-        return status;
 
+        console.log("status", status);
+
+          // .done(function(data) {
+          //   console.log("data from Ajax request in HabitView: ", data.status);
+          //   return data;
+          // });
+        //console.log("status: ", status, Object.keys(status));
+        //return status;
       },
       action: this.model.get('action'),
       quantity: this.model.get('quantity')
