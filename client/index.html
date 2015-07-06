@@ -17,19 +17,31 @@
     <p>I want to build a habit by 
       <input type='text' id='action' placeholder='Enter action' autofocus/> 
       <input type='text' id='quantity' placeholder='Enter quantity'/> 
-      times per 
-      <input type='text' id='time' placeholder='Enter time'/>
+      times per day
     </p>
     <button action='submit'>Submit</button>
   </script>
 
+  <script id="habitsTemplate" type="text/x-handlebars-template">
+    <h2>View Your Habits</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Action</th>
+          <th>Quantity</th>
+          <th>Status</th>
+          <th>Completion</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </script>
   
   <script id="habitTemplate" type="text/x-handlebars-template">
     <td>{{ action }}</td>
     <td>{{ quantity }}</td>
-    <td>{{ time }}</td>
     <td>{{ status }}</td>
-    <td><button>Complete</button></td>
+    <td><button id="{{action}}">Complete</button></td>
   </script>
     
 

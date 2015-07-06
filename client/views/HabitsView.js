@@ -4,13 +4,15 @@ var app = app || {};
 ////////////    Marionette Implementation     ////////////
 //////////////////////////////////////////////////////////
 
-app.HabitsView = Marionette.CollectionView.extend({
+app.HabitsView = Marionette.CompositeView.extend({
   
-  tagName: "table",
+  template: Handlebars.compile($('#habitsTemplate').html()),
+      
+  collection: habitsCollection,
   
   childView: app.HabitView,
-  
-  collection: habitsCollection,
+
+  childViewContainer: "tbody",
 
   childEvents: {
     render: function() {
@@ -60,20 +62,6 @@ var habitsView = new app.HabitsView();
 //     ).appendTo($('body'));
 //   }
 
-//   // render: function() {
-//   //   return this.$el.html('<h2>View Habits</h2>').append(
-      
-//   //     this.collection.map(function(habit){
-        
-//   //       var newHabitView = new app.HabitView({model: habit});
-
-//   //       console.log('newHabitView', newHabitView);
-
-//   //       return newHabitView.render();
-
-//   //     })
-//   //   ).appendTo($('body'));
-//   // }
 // });
 
 // new app.HabitsView({collection: habitsCollection});

@@ -24,7 +24,7 @@ module.exports = {
         'action': habit.action,
         'quantity': habit.quantity,
         'time': habit.time,
-        'status': 0,
+        'status': habit.status || 0,
         'timestamp': 'today'
       }).save({}, {method: 'insert'})
         .then(function(habit){

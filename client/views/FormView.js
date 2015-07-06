@@ -30,7 +30,8 @@ app.FormView = Marionette.ItemView.extend({
     habitsCollection.create({
       action: habitAction,
       quantity: habitQuantity,
-      time: habitTime
+      //time: habitTime,
+      status: 0
     }, {
       success: function (habit) {
         console.log("habit: ", habit);

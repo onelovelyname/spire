@@ -20,7 +20,7 @@ db.knex.schema.hasTable('habits').then(function(exists){
       habit.increments('id').primary();
       habit.string('action', 100);
       habit.integer('quantity', 10);
-      habit.string('time', 10);
+      //habit.string('time', 10);
       habit.float('status', 10);
       habit.timestamp('timestamp', 30);
     }).then(function(table) {
@@ -32,7 +32,7 @@ db.knex.schema.hasTable('habits').then(function(exists){
             habitCompletion.integer('habit_id').references('habits.id');
             habitCompletion.date('start_date');
             habitCompletion.date('end_date');
-            habitCompletion.boolean('status');
+            habitCompletion.float('status');
           }).then(function(table){
             console.log('Created Habits Completion Table', table);
           });
