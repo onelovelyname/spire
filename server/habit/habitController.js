@@ -23,7 +23,9 @@ module.exports = {
       new Habit({
         'action': habit.action,
         'quantity': habit.quantity,
-        'time': habit.time
+        'time': habit.time,
+        'status': 0,
+        'timestamp': 'today'
       }).save({}, {method: 'insert'})
         .then(function(habit){
           resolve(habit);
@@ -31,7 +33,7 @@ module.exports = {
         .catch(function(error){
           reject(error);
         });
-        
+
     });
   }
 
