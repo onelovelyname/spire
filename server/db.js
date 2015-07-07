@@ -24,16 +24,26 @@ db.knex.schema.hasTable('habits').then(function(exists){
     }).then(function(table) {
       console.log("Created Habits Table", table);
 
-      db.knex.schema.hasTable('habits_completion').then(function(exists){
+      db.knex.schema.hasTable('completions').then(function(exists){
         if(!exists) {
-          db.knex.schema.createTable('habits_completion', function(habitCompletion){
+          db.knex.schema.createTable('completions', function(habitCompletion){
             habitCompletion.increments('id').primary();
-            habitCompletion.integer('habit_id');
             habitCompletion.date('start_date');
             habitCompletion.date('end_date');
             habitCompletion.float('status');
           }).then(function(table){
-            console.log('Created Habits Completion Table', table);
+            console.log('Created Completions Table', table);
+
+            db.knex.schema.hasTable('completions_habits').then(function(exists){
+              if(!exists) {
+                db.knex.schema.createTable('completions_habits', function(habit_completion){
+                  habit_completion.integer('habit_id').references('habits.id');
+                  habit_completion.integer('completion_id').references('completions.id');
+                }).then(function(table){
+                  console.log("Created Habits Completions Table", table);
+                });
+              }
+            });
           });
         }
       });

@@ -1,13 +1,13 @@
 var HabitCompletion = require('./habitCompletionModel');
+var Habit = require('../habit/habitModel.js');
 
 module.exports = {
 
-  saveHabitCompletion: function(habitId, habitStatus) {
+  saveHabitCompletion: function(habitStatus, habitModel) {
 
     return new Promise(function(resolve, reject) {
 
       new HabitCompletion({
-        'habit_id': habitId,
         'start_date': "today",
         'end_date': "tomorrow",
         'status': habitStatus
@@ -15,7 +15,9 @@ module.exports = {
 
       .then(function(habitCompletion) {
         console.log("success in saveHabitCompletion", habitCompletion);
-        resolve(habitCompletion);
+        habitCompletion.habit().attach(habit).then(function(){
+          resolve(habitCompletion);
+        });
       })
 
       .catch(function(error) {
@@ -27,22 +29,20 @@ module.exports = {
 
   },
 
-  saveCompletions: function (habit, request) {
+  saveCompletions: function (request, habit) {
 
     var context = this;
 
-    console.log("this", this);
-
     var habitCompletionsCollection = request.habitCompletions;
+    console.log("habitCompletionsCollection in saveCompletions: ", habitCompletionsCollection);
+
+    var mappedHabitCompletions = habitCompletionsCollection.map(function(habitCompletionModel) {
+          return context.saveHabitCompletion(habitCompletionModel.status, habit);
+        });
 
     return new Promise(function(resolve, reject) {
 
-      Promise.all([
-        habitCompletionsCollection.map(function(habitCompletionModel) {
-          return context.saveHabitCompletion(habit.id, habitCompletionModel.status);
-        })
-
-      ]).then(function(results){
+      Promise.all(mappedHabitCompletions).then(function(results){
         console.log("results in saveCompletions: ", results);
         resolve(results);
       })

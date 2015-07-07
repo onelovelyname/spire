@@ -1,8 +1,12 @@
 var db = require('../db');
+var Habit = ('../habit/habitModel.js');
 
-var HabitCompletion = db.Model.extend({
-  tableName: 'habits_completion'
+var Completion = db.Model.extend({
+  tableName: 'completions',
+  habit: function() {
+    return this.belongsTo(Habit);
+  }
 
 });
 
-module.exports = HabitCompletion;
+module.exports = Completion;

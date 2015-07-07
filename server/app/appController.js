@@ -18,7 +18,7 @@ module.exports = {
 
     var habit = request.body;
     habitController.saveHabit(habit).then(function(habit){
-      habitCompletionController.saveCompletions(habit, request.body).then(function(habitCompletion){
+      habitCompletionController.saveCompletions(request.body, habit).then(function(habitCompletion){
         console.log("saved habit and habitCompletion to db!!", habitCompletion);
         response.status(200).send(habitCompletion);
       })

@@ -27,17 +27,20 @@ app.HabitView = Marionette.ItemView.extend({
   templateHelpers: function() {
 
     var modelId = this.model.get("id");
+
+    console.log("this.model in templateHelpers: ", this.model);
     
     return {
 
       getStatus: function() {
 
         // send ajax request to server looking for status in habits_completion table given habit id 
+        console.log("this.model in getStatus: ", this.model);
 
-        return this.getHabitCompletion().then(function(habitCompletion) {
-          //console.log("habitCompletion: ", habitCompletion);
-          return habitCompletion.status;
-        });
+        // return this.getHabitCompletion().then(function(habitCompletion) {
+        //   //console.log("habitCompletion: ", habitCompletion);
+        //   return habitCompletion.status;
+        // });
 
       },
 
