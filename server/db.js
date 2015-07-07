@@ -20,7 +20,6 @@ db.knex.schema.hasTable('habits').then(function(exists){
       habit.increments('id').primary();
       habit.string('action', 100);
       habit.integer('quantity', 10);
-      //habit.string('time', 10);
       habit.timestamp('timestamp', 30);
     }).then(function(table) {
       console.log("Created Habits Table", table);

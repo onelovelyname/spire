@@ -6,8 +6,8 @@ app.HabitCompletion = Backbone.Model.extend({
     start_date: Date.now(),
     end_date: Date.now(),
     status: 0
-  },
+  }
 
-  url: "api/habitCompletion"
+  //url: "api/habitCompletion"
 
 });

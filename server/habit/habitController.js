@@ -23,10 +23,10 @@ module.exports = {
       new Habit({
         'action': habit.action,
         'quantity': habit.quantity,
-        //'time': habit.time,
-        'timestamp': 'today'
+        'timestamp': 'today',
       }).save({}, {method: 'insert'})
         .then(function(habit){
+          console.log("Habit saved!", habit);
           resolve(habit);
         })
         .catch(function(error){

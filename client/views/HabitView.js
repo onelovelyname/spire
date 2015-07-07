@@ -10,6 +10,19 @@ app.HabitView = Marionette.ItemView.extend({
   template: _.template("<td><button id='<%= action %>'>Complete</button></td><td><%= action %></td><td><%= quantity %></td><td><%= getStatus() %></td>"),
 
   tagName: 'tr',
+
+  completionEvents: {
+    "change:status": "render"
+  },
+
+  events: {
+    "click button": "updateStatus"
+  },
+
+  initialize: function() {
+    this.bindEntityEvents(this.model.completion, this.completionEvents);
+  },
+
   
   templateHelpers: function() {
 
@@ -22,7 +35,7 @@ app.HabitView = Marionette.ItemView.extend({
         // send ajax request to server looking for status in habits_completion table given habit id 
 
         return this.getHabitCompletion().then(function(habitCompletion) {
-          console.log("habitCompletion: ", habitCompletion);
+          //console.log("habitCompletion: ", habitCompletion);
           return habitCompletion.status;
         });
 
@@ -43,12 +56,13 @@ app.HabitView = Marionette.ItemView.extend({
     };
   },
 
-  events: {
-    "click button": "updateStatus"
-  },
-
   updateStatus: function(event) {
     console.log('event target action in HabitView: ', event.target.id);
+
+    Radio.execute("day", "event:complete");
+    //Day Model
+    // Radio.handle("day", "event:complete", functionName);
+
     // update status property in Habit Completion model
 
     // send put request to api to update habit_completion table

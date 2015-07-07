@@ -15,14 +15,31 @@ module.exports = {
 
   createInitialHabit: function(request, response) {
     console.log('createHabits request.body', request.body);
+
     var habit = request.body;
     habitController.saveHabit(habit).then(function(habit){
-      console.log("Saved habit!");
-      response.status(200).send(habit);
-    })
-    .catch(function(error){
-      console.log("Did not save habit, check for errors", error);
+      habitCompletionController.saveCompletions(habit, request.body).then(function(habitCompletion){
+        console.log("saved habit and habitCompletion to db!!", habitCompletion);
+        response.status(200).send(habitCompletion);
+      })
+      .catch(function(error){
+        console.log("Did not save habit or habitCompletion to db, check for errors: ", error);
+      });
     });
+
+    // Promise.all([
+    //   habitController.saveHabit(habit),
+    //   habitCompletionController.saveCompletions(habit)
+    // ]).then(function(results) {
+    //   console.log("saved habit and habit completion to db!!", results);
+    //   response.status(200).send(results);
+    // })
+    // // habitController.saveHabit(habit).then(function(habit){
+    // //   console.log("Saved habit!");
+    // // })
+    // .catch(function(error){
+    //   console.log("Did not save habit or habit completion, check for errors", error);
+    // });
   },
 
   fetchHabitCompletion: function(request, response) {
@@ -33,15 +50,15 @@ module.exports = {
     });
   },
 
-  createHabitCompletion: function(request, response) {
-    var habitCompletion = request.body;
-    console.log('createHabitCompletion request.body', habitCompletion);
-    habitCompletionController.saveHabitCompletion(habitCompletion).then(function(habitCompletion) {
-      console.log("Saved habit completion!");
-      response.status(200).send(habitCompletion);
-    })
-    .catch(function(error) {
-      console.log("Did not save habitCompletion, check for errors", error);
-    });
-  }
+  // createHabitCompletion: function(request, response) {
+  //   var habitCompletion = request.body;
+  //   console.log('createHabitCompletion request.body', habitCompletion);
+  //   habitCompletionController.saveHabitCompletion(habitCompletion).then(function(habitCompletion) {
+  //     console.log("Saved habit completion!");
+  //     response.status(200).send(habitCompletion);
+  //   })
+  //   .catch(function(error) {
+  //     console.log("Did not save habitCompletion, check for errors", error);
+  //   });
+  // }
 };

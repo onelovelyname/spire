@@ -15,7 +15,7 @@ app.FormView = Marionette.ItemView.extend({
   },
 
   initialize: function() {
-    $('body').prepend(this.render().el);
+    //$('body').prepend(this.render().el);
   },
 
   handleSubmit: function (event) {
@@ -27,26 +27,20 @@ app.FormView = Marionette.ItemView.extend({
 
     // create new Habit model inside of HabitsCollection
 
+    var habitCompletionsCollection = new app.HabitCompletions();
+    habitCompletionsCollection.add({
+      start_date: null,
+      end_date: null,
+      status: 0 / Number(habitQuantity)
+    });
+
     habitsCollection.create({
       action: habitAction,
-      quantity: habitQuantity,
-      //time: habitTime,
+      quantity: Number(habitQuantity),
+      habitCompletions: habitCompletionsCollection.models
     }, {
       success: function (habit) {
-        console.log("habit in FormView", habit);
-        var newHabitCompletion = {
-          "habit_id": habit.get("id"),
-          "quantity": Number(habit.get("quantity")),
-          "status": 0
-        };
-        new app.HabitCompletion(newHabitCompletion).save({}, {
-          success: function(habitCompletion) {
-            console.log("habitCompletion in FormView: ", habitCompletion);
-          },
-          error: function(error) {
-            console.error("error", error);
-          }
-        });
+        console.log("habit created: ", habit);
       },
       error: function (error) {
         console.error("error", error);
@@ -56,7 +50,7 @@ app.FormView = Marionette.ItemView.extend({
 
 });
 
-new app.FormView();
+app.getRegion("formRegion").show(new app.FormView());
 
 //////////////////////////////////////////////////////////
 ////////////    Backbone Implementation     //////////////
