@@ -25,7 +25,7 @@ app.FormView = Marionette.ItemView.extend({
     var habitQuantity = this.$('#quantity').val();
     var habitTime = this.$('#time').val();
 
-    // create new Habit model inside of HabitsCollection
+    // create new HabitCompletions Collection to save as a property of Habit Model below
 
     var habitCompletionsCollection = new app.HabitCompletions();
     habitCompletionsCollection.add({
@@ -33,6 +33,8 @@ app.FormView = Marionette.ItemView.extend({
       end_date: null,
       status: 0 / Number(habitQuantity)
     });
+
+    // create new Habit model inside of HabitsCollection
 
     habitsCollection.create({
       action: habitAction,

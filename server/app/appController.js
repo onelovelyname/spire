@@ -26,20 +26,6 @@ module.exports = {
         console.log("Did not save habit or habitCompletion to db, check for errors: ", error);
       });
     });
-
-    // Promise.all([
-    //   habitController.saveHabit(habit),
-    //   habitCompletionController.saveCompletions(habit)
-    // ]).then(function(results) {
-    //   console.log("saved habit and habit completion to db!!", results);
-    //   response.status(200).send(results);
-    // })
-    // // habitController.saveHabit(habit).then(function(habit){
-    // //   console.log("Saved habit!");
-    // // })
-    // .catch(function(error){
-    //   console.log("Did not save habit or habit completion, check for errors", error);
-    // });
   },
 
   fetchHabitCompletion: function(request, response) {
