@@ -7,7 +7,7 @@ var app = app || {};
 app.HabitView = Marionette.ItemView.extend({
 
   //template: Handlebars.compile($('#habitTemplate').html()),
-  template: _.template("<td><button id='<%= action %>'>Complete</button></td><td><%= action %></td><td><%= quantity %></td><td><%= getStatus() %></td>"),
+  template: _.template("<td><button id='<%= action %>'>Complete</button></td><td><%= action %></td><td><%= quantity %></td><td><%= getStatusFromModel() %></td>"),
 
   tagName: 'tr',
 
@@ -27,31 +27,26 @@ app.HabitView = Marionette.ItemView.extend({
   templateHelpers: function() {
 
     var modelId = this.model.get("id");
+    var model = this.model;
 
-    console.log("this.model in templateHelpers: ", this.model);
+    console.log('this.model', this.model);
+    var today = Date.parse(new Date());
+    var millisecondsInDay = 86400000;
     
     return {
 
-      getStatus: function() {
+      getStatusFromModel: function() {
 
-        // send ajax request to server looking for status in habits_completion table given habit id 
-        console.log("this.model in getStatus: ", this.model);
+        console.log("this.model completions in getStatus: ", model.get("completions"));
 
-        // return this.getHabitCompletion().then(function(habitCompletion) {
-        //   //console.log("habitCompletion: ", habitCompletion);
-        //   return habitCompletion.status;
-        // });
+        var completions = model.get("completions");
 
-      },
-
-      getHabitCompletion: function() {
-        
-        return new Promise(function(resolve, reject) {
-          $.get("/api/habitCompletion", { "habit_id": modelId }).then(function(data){
-            resolve(data);
-          });
-        });
-
+        for (var key in completions) {
+          console.log("completions[key]", completions[key]);
+          if(Date.parse(completions[key].start_date.toString()) + millisecondsInDay > today) {
+            return completions[key].status;
+          }
+        }
       },
 
       action: this.model.get('action'),

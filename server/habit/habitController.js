@@ -9,9 +9,13 @@ module.exports = {
         withRelated: ['completions']
       })
       .then(function(habits) {
-        //console.log('habits: ', habits.models);
-        console.log("related: ", habits.models[0].related('completions').models[0].attributes);
+
+        habits.forEach(function(habit) {
+          var completions = habit.related('completions').models;
+        });
+
         resolve(habits);
+      
       }).catch(function(error) {
         reject(error);
       });
