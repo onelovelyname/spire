@@ -5,8 +5,12 @@ module.exports = {
     
     return new Promise(function(resolve, reject) {
       
-      new Habit().fetchAll()
+      new Habit().fetchAll({
+        withRelated: ['completions']
+      })
       .then(function(habits) {
+        //console.log('habits: ', habits.models);
+        console.log("related: ", habits.models[0].related('completions').models[0].attributes);
         resolve(habits);
       }).catch(function(error) {
         reject(error);

@@ -8,16 +8,22 @@ module.exports = {
     return new Promise(function(resolve, reject) {
 
       new HabitCompletion({
+        'habit_id': habitModel.id,
         'start_date': "today",
         'end_date': "tomorrow",
         'status': habitStatus
       }).save({}, {method: 'insert'})
 
-      .then(function(habitCompletion) {
-        console.log("success in saveHabitCompletion", habitCompletion);
-        habitCompletion.habit().attach(habit).then(function(){
-          resolve(habitCompletion);
-        });
+      .then(function(completion) {
+
+        console.log('completion in saveHabitCompletion', completion);
+
+        // var completions = completion.fetchAll({withRelated: ['habit']}).then(function(completion) {
+        //   return completion;
+        // });
+        resolve(completion);
+        //completion.habit().attach(habit).then(function(){
+        //});
       })
 
       .catch(function(error) {
