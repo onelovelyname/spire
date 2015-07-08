@@ -7,7 +7,7 @@ var app = app || {};
 app.HabitView = Marionette.ItemView.extend({
 
   //template: Handlebars.compile($('#habitTemplate').html()),
-  template: _.template("<td><button id='<%= action %>'>Complete</button></td><td><%= action %></td><td><%= quantity %></td><td><%= getStatusFromModel() %></td>"),
+  template: _.template("<td><button id='<%= modelId %>'>Complete</button></td><td><%= action %></td><td><%= quantity %></td><td><%= getStatusFromModel() %></td>"),
 
   tagName: 'tr',
 
@@ -26,7 +26,6 @@ app.HabitView = Marionette.ItemView.extend({
   
   templateHelpers: function() {
 
-    var modelId = this.model.get("id");
     var model = this.model;
 
     var millisecondsInDay = 86400000;
@@ -54,14 +53,15 @@ app.HabitView = Marionette.ItemView.extend({
       },
 
       action: this.model.get('action'),
-      quantity: this.model.get('quantity')
+      quantity: this.model.get('quantity'),
+      modelId: this.model.get('id')
     };
   },
 
   updateStatus: function(event) {
     console.log('event target action in HabitView: ', event.target.id);
 
-    Radio.execute("day", "event:complete");
+    //Radio.execute("day", "event:complete");
     //Day Model
     // Radio.handle("day", "event:complete", functionName);
 
