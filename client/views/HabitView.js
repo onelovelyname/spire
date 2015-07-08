@@ -29,23 +29,27 @@ app.HabitView = Marionette.ItemView.extend({
     var modelId = this.model.get("id");
     var model = this.model;
 
-    console.log('this.model', this.model);
-    var today = Date.parse(new Date());
     var millisecondsInDay = 86400000;
     
     return {
 
       getStatusFromModel: function() {
 
-        console.log("this.model completions in getStatus: ", model.get("completions"));
+        console.log('inside of getStatusFromModel!');
+
+        var today = Date.parse(new Date());
+        //console.log("this.model completions in getStatus: ", model.get("completions"));
 
         var completions = model.get("completions");
 
-        for (var key in completions) {
-          console.log("completions[key]", completions[key]);
-          if(Date.parse(completions[key].start_date.toString()) + millisecondsInDay > today) {
-            return completions[key].status;
-          }
+        for (var i = 0; i < completions.length; i++) {
+          //if( Date.parse(completions[i].start_date) + millisecondsInDay > today ) {
+            if (completions[i].attributes) {
+              return completions[i].attributes.status;
+            } else {
+              return completions[i].status;
+            }
+          //}
         }
       },
 

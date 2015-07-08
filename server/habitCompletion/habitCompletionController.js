@@ -39,7 +39,7 @@ module.exports = {
 
     var context = this;
 
-    var habitCompletionsCollection = request.habitCompletions;
+    var habitCompletionsCollection = request.completions;
     console.log("habitCompletionsCollection in saveCompletions: ", habitCompletionsCollection);
 
     var mappedHabitCompletions = habitCompletionsCollection.map(function(habitCompletionModel) {
