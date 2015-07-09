@@ -3,7 +3,7 @@ var Habit = require('../habit/habitModel.js');
 
 module.exports = {
 
-  saveHabitCompletion: function(habitStatus, habitModel) {
+  saveCompletion: function(habitStatus, habitModel) {
 
     return new Promise(function(resolve, reject) {
 
@@ -15,19 +15,12 @@ module.exports = {
       }).save({}, {method: 'insert'})
 
       .then(function(completion) {
-
-        console.log('completion in saveHabitCompletion', completion);
-
-        // var completions = completion.fetchAll({withRelated: ['habit']}).then(function(completion) {
-        //   return completion;
-        // });
+        console.log('completion in saveCompletion', completion);
         resolve(completion);
-        //completion.habit().attach(habit).then(function(){
-        //});
       })
 
       .catch(function(error) {
-        console.log("error in saveHabitCompletion: ", error);
+        console.log("error in saveCompletion: ", error);
         reject(error);
       });
 
@@ -43,7 +36,7 @@ module.exports = {
     console.log("habitCompletionsCollection in saveCompletions: ", habitCompletionsCollection);
 
     var mappedHabitCompletions = habitCompletionsCollection.map(function(habitCompletionModel) {
-          return context.saveHabitCompletion(habitCompletionModel.status, habit);
+          return context.saveCompletion(habitCompletionModel.status, habit);
         });
 
     return new Promise(function(resolve, reject) {
