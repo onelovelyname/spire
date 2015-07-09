@@ -22,7 +22,6 @@ app.HabitView = Marionette.ItemView.extend({
   initialize: function() {
     this.bindEntityEvents(this.model.completion, this.completionEvents);
   },
-
   
   templateHelpers: function() {
 
@@ -33,22 +32,30 @@ app.HabitView = Marionette.ItemView.extend({
     return {
 
       getStatusFromModel: function() {
+        console.log("inside of getStatusFromModel");
 
-        console.log('inside of getStatusFromModel!');
-
-        var today = Date.parse(new Date());
-        //console.log("this.model completions in getStatus: ", model.get("completions"));
-
+        var today = Date.parse(habitsView.getDay("today"));
+        console.log("today: ", today);
+        
         var completions = model.get("completions");
 
         for (var i = 0; i < completions.length; i++) {
-          //if( Date.parse(completions[i].start_date) + millisecondsInDay > today ) {
-            if (completions[i].attributes) {
+          if(completions[i].attributes) {
+            if(Date.parse(completions[i].attributes.start_date) === today) {
               return completions[i].attributes.status;
-            } else {
+            }
+          } else {
+            if(Date.parse(completions[i].start_date) === today) {
               return completions[i].status;
             }
-          //}
+          }
+          // if( Date.parse(completions[i].start_date) === today ) {
+          //   if (completions[i].attributes) {
+          //     return completions[i].attributes.status;
+          //   } else {
+          //     return completions[i].status;
+          //   }
+          // }
         }
       },
 
@@ -59,7 +66,13 @@ app.HabitView = Marionette.ItemView.extend({
   },
 
   updateStatus: function(event) {
+
+    var today = Date.parse(habitsView.getDay("today"));
+
     console.log('event target action in HabitView: ', event.target.id);
+
+    console.log('this.model.completions with start_date = today',
+      this.model.get("completions").where({start_date: today}));
 
     //Radio.execute("day", "event:complete");
     //Day Model

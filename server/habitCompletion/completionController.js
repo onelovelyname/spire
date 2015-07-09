@@ -1,5 +1,6 @@
 var HabitCompletion = require('./habitCompletionModel');
 var Habit = require('../habit/habitModel.js');
+var Helper = require('../config/helpers.js');
 
 module.exports = {
 
@@ -9,8 +10,8 @@ module.exports = {
 
       new HabitCompletion({
         'habit_id': habitModel.id,
-        'start_date': "today",
-        'end_date': "tomorrow",
+        'start_date': Helper.getDay("today"),
+        'end_date': Helper.getDay("tomorrow"),
         'status': habitStatus
       }).save({}, {method: 'insert'})
 

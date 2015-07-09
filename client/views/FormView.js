@@ -29,8 +29,8 @@ app.FormView = Marionette.ItemView.extend({
 
     var habitCompletionsCollection = new app.HabitCompletions();
     habitCompletionsCollection.add({
-      start_date: null,
-      end_date: null,
+      start_date: habitsView.getDay("today"),
+      end_date: habitsView.getDay("tomorrow"),
       status: 0 / Number(habitQuantity)
     });
 
