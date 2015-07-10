@@ -16,16 +16,18 @@ app.HabitView = Marionette.ItemView.extend({
   },
 
   events: {
+
     "click button": function(event) {
       this.model.updateStatus(event);
     }
+    
   },
 
   initialize: function() {
-    //this.listenTo(this.model, 'change', console.log("model changed!"));
-    _.extend(this.model.get("completions"), Backbone.Events);
 
+    _.extend(this.model.get("completions"), Backbone.Events);
     this.bindEntityEvents(this.model.get("completions"), this.completionEvents);
+
   },
   
   templateHelpers: function() {
@@ -52,19 +54,13 @@ app.HabitView = Marionette.ItemView.extend({
               return completions[i].status;
             }
           }
-          // if( Date.parse(completions[i].start_date) === today ) {
-          //   if (completions[i].attributes) {
-          //     return completions[i].attributes.status;
-          //   } else {
-          //     return completions[i].status;
-          //   }
-          // }
         }
       },
 
       action: this.model.get('action'),
       quantity: this.model.get('quantity'),
       modelId: this.model.get('id')
+
     };
   }
 
