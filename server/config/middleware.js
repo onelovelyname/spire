@@ -8,6 +8,7 @@ module.exports = function(app, express) {
 
   app.get('/api/habits', appController.fetchHabits);
   app.post('/api/habits', appController.createInitialHabit);
+  app.put('/api/habits', appController.updateHabitStatus);
 
   app.get('/api/habitCompletion', appController.fetchHabitCompletion);
   //app.post('/api/habitCompletion', appController.createHabitCompletion);

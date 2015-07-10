@@ -1,6 +1,8 @@
 var habitController = require('../habit/habitController.js');
 var completionController = require('../habitCompletion/completionController.js');
 var _ = require('underscore');
+var Helper = require('../config/helpers.js');
+
 
 module.exports = {
 
@@ -56,6 +58,23 @@ module.exports = {
     var query = request.query;
     completionController.getHabitCompletion(query).then(function(habitCompletion){
       response.status(200).send(habitCompletion);
+    });
+  },
+
+  updateHabitStatus: function(request, response) {
+    var today = Helper.getDay("today");
+    var completions = request.body.completions;
+    var habitModelId = request.body.id;
+    completions.forEach(function(completion) {
+      if(Date.parse(completion.start_date) === Date.parse(today)) {
+
+        completionController.saveExistingCompletion(habitModelId, completion.id, completion.status)
+
+        .then(function(results){
+          response.status(200).send(results);
+        });
+
+      }
     });
   }
 };

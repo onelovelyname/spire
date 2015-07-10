@@ -69,6 +69,20 @@ module.exports = {
 
     });
 
+  },
+
+  saveExistingCompletion: function(habitModelId, completionModelId, status) {
+
+    return new Promise(function(resolve, reject) {
+
+      new HabitCompletion({habit_id: habitModelId, id: completionModelId}).save({status: status}, {method: 'update', patch: true}).then(function(model) {
+        console.log("Saved completion to the db from saveExistingCompletion!!!");
+        resolve(model);
+      })
+      .catch(function(error) {
+        console.error("Could not update completion for that habit in the db");
+      });
+    });
   }
 
 };
