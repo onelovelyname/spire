@@ -16,11 +16,16 @@ app.HabitView = Marionette.ItemView.extend({
   },
 
   events: {
-    "click button": "updateStatus"
+    "click button": function(event) {
+      this.model.updateStatus(event);
+    }
   },
 
   initialize: function() {
-    this.bindEntityEvents(this.model.completion, this.completionEvents);
+    //this.listenTo(this.model, 'change', console.log("model changed!"));
+    _.extend(this.model.get("completions"), Backbone.Events);
+
+    this.bindEntityEvents(this.model.get("completions"), this.completionEvents);
   },
   
   templateHelpers: function() {
@@ -32,10 +37,8 @@ app.HabitView = Marionette.ItemView.extend({
     return {
 
       getStatusFromModel: function() {
-        console.log("inside of getStatusFromModel");
 
         var today = Date.parse(habitsView.getDay("today"));
-        console.log("today: ", today);
         
         var completions = model.get("completions");
 
@@ -63,25 +66,8 @@ app.HabitView = Marionette.ItemView.extend({
       quantity: this.model.get('quantity'),
       modelId: this.model.get('id')
     };
-  },
-
-  updateStatus: function(event) {
-
-    var today = Date.parse(habitsView.getDay("today"));
-
-    console.log('event target action in HabitView: ', event.target.id);
-
-    console.log('this.model.completions with start_date = today',
-      this.model.get("completions").where({start_date: today}));
-
-    //Radio.execute("day", "event:complete");
-    //Day Model
-    // Radio.handle("day", "event:complete", functionName);
-
-    // update status property in Habit Completion model
-
-    // send put request to api to update habit_completion table
   }
+
 
 });
 
