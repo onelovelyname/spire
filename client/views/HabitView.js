@@ -7,7 +7,7 @@ var app = app || {};
 app.HabitView = Marionette.ItemView.extend({
 
   //template: Handlebars.compile($('#habitTemplate').html()),
-  template: _.template("<td><button id='<%= modelId %>'>Complete</button></td><td><%= action %></td><td><%= quantity %></td><td><%= getStatusFromModel() %></td>"),
+  template: _.template("<td><button id='<%= modelId %>'>Complete</button></td><td><%= action %></td><td><%= quantity %></td><td><%= calculateStatus(getStatusFromModel()) %></td>"),
 
   tagName: 'tr',
 
@@ -20,7 +20,7 @@ app.HabitView = Marionette.ItemView.extend({
     "click button": function(event) {
       this.model.updateStatus(event);
     }
-    
+
   },
 
   initialize: function() {
@@ -37,6 +37,16 @@ app.HabitView = Marionette.ItemView.extend({
     var millisecondsInDay = 86400000;
     
     return {
+
+      action: this.model.get('action'),
+      quantity: this.model.get('quantity'),
+      modelId: this.model.get('id'),
+
+      calculateStatus: function (status) {
+
+        return status / this.quantity <= 1 ? status / this.quantity : 1;
+
+      },
 
       getStatusFromModel: function() {
 
@@ -55,12 +65,7 @@ app.HabitView = Marionette.ItemView.extend({
             }
           }
         }
-      },
-
-      action: this.model.get('action'),
-      quantity: this.model.get('quantity'),
-      modelId: this.model.get('id')
-
+      }
     };
   }
 
