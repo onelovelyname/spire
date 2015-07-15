@@ -70,7 +70,7 @@ app.HabitsView = Marionette.CompositeView.extend({
 
 });
 
-var habitsView = new app.HabitsView();
+//var habitsView = new app.HabitsView();
 
 //////////////////////////////////////////////////////////
 ////////////    Backbone Implementation     //////////////
