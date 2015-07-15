@@ -17,14 +17,13 @@ app.Habit = Backbone.Model.extend({
   updateCompletions: function (completions, quantity, today) {
 
     completions.forEach(function(completion){
+      completion = completion.attributes || completion;
       if(Date.parse(completion.start_date) === today) {
         completion.status++;
-        //completion.status = completion.status / quantity;
-         //<= 1 ? status / this.quantity : 1;
       }
 
     });
-    console.log("completions: ", completions);
+
     return completions;
     
   },
@@ -35,18 +34,14 @@ app.Habit = Backbone.Model.extend({
 
     var today = Date.parse(habitsView.getDay("today"));
 
-    console.log('event target action in HabitView: ', event.target.id);
-    console.log('event in HabitView: ', event);
-
     var quantity = this.get("quantity");
-    console.log("quantity: ", quantity);
+  
     var completions = this.get("completions");
     
     var newCompletions = this.updateCompletions(completions, quantity, today);
 
     this.set("completions", newCompletions);
 
-    console.log("this.get(completions): ", this.get("completions"));
     this.get("completions").trigger("change:status", this);
 
     //send put request to api to update completions table

@@ -72,6 +72,7 @@ module.exports = {
   },
 
   saveExistingCompletion: function(habitModelId, completionModelId, status) {
+    console.log("inside of saveExistingCompletion");
 
     return new Promise(function(resolve, reject) {
 
