@@ -15,23 +15,19 @@ app.HabitView = Marionette.ItemView.extend({
     "change:status": "render"
   },
 
-  test: function() {
-    console.log("test: ", this);
-  },
-
   events: {
 
     "click button": function(event) {
       this.model.updateStatus(event);
-      this.render();
+      //this.render();
     }
 
   },
 
   initialize: function() {
 
-    //_.extend(this.model.get("completions"), Backbone.Events);
-    //Marionette.bindEntityEvents(this, this.model.get("completions"), this.completionEvents);
+    _.extend(this.model.get("completions"), Backbone.Events);
+    this.bindEntityEvents(this.model.get("completions"), this.completionEvents);
     
   },
   

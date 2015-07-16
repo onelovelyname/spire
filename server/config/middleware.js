@@ -22,17 +22,9 @@ passport.use(new GitHubStrategy({
     callbackURL: "http://127.0.0.1:3000/api/auth/github/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-    //console.log("profile from GitHub: ", profile);
     return done(null, profile);
   }
 ));
-
-// var ensureAuthenticated = function(request, response, next) {
-//   if (request.isAuthenticated()) {
-//     return next();
-//   }
-//   res.redirect('/');
-// };
 
 module.exports = function(app, express) {
 
@@ -51,41 +43,27 @@ module.exports = function(app, express) {
 
   app.use(express.static(__dirname + '/../../client'));
 
-  // router.get('/home', ensureAuthenticated, function(request, response) {
-  //   console.log("hitting server for home request");
-  //   response.render('#home', { user: request.user });
-  // });
+  router.get('/auth/github', passport.authenticate('github', {scope: [ 'user:email' ]}));
 
-  router.get('/api/auth/github', passport.authenticate('github', {scope: [ 'user:email' ]}));
-
-  router.get('/api/auth/github/callback', passport.authenticate('github', { failureRedirect: '/' }),
+  router.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/' }),
     function(request, response) {
-      //console.log("request.user: ", request.user);
 
       // check if User is already saved in db
         // if not yet saved, add User to db with github id, name, and a Spire id
-      
-        // request.session.regenerate(function(error){
-        //   console.log("inside of request.session.regenerate");
-        //   request.session.user = request.user.id;
-        //   console.log("request.session", request.session);
-        //   //localStorage.setItem('spire_session', request.session.user);
-        // });
         response.redirect('/#home');
-      // create new session for user - not sure if this is taken care of by Passport entirely or whether we need to create a separate session using Express 
+
     });
 
-  router.get('/api/auth/user', function(request, response) {
+  router.get('/auth/user', function(request, response) {
     response.status(200).send(request.session);
   });
 
+  router.get('/habits', appController.fetchHabits);
+  router.post('/habits', appController.createInitialHabit);
+  router.put('/habits', appController.updateHabitStatus);
 
-  router.get('/api/habits', appController.fetchHabits);
-  router.post('/api/habits', appController.createInitialHabit);
-  router.put('/api/habits', appController.updateHabitStatus);
+  router.get('/habitCompletion', appController.fetchHabitCompletion);
 
-  router.get('/api/habitCompletion', appController.fetchHabitCompletion);
-
-  app.use(router);
+  app.use('/api', router);
 
 };
