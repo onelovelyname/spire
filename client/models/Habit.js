@@ -42,7 +42,10 @@ app.Habit = Backbone.Model.extend({
 
     this.set("completions", newCompletions);
 
-    this.get("completions").trigger("change:status", this);
+    //_.extend(this.get("completions"), Backbone.Events);
+
+    //this.get("completions").trigger("change:status", this.get('completions'));
+    //this.trigger("change", this);
 
     //send put request to api to update completions table
     this.save({}, {
