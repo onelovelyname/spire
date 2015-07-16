@@ -5,6 +5,26 @@ app.Router = Backbone.Router.extend({
 
   },
 
+  execute: function(callback, args, name) {
+
+
+    console.log("arguments: ", arguments);
+    console.log("LocalStorage: ", localStorage);
+     
+     // send request to get user status to see if user is authenticated
+     // if (!notsignedin) {
+     //  // go to login
+     //  this.navigate('/');
+     //  return false;
+     // } else {
+      if (callback) {
+        callback.apply(this, args);
+       }
+    // }
+
+
+  },
+
   routes: {
 
     "": "login",

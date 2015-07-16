@@ -29,6 +29,7 @@ module.exports = {
   },
   
   fetchHabits: function(request, response) {
+    //console.log("request.session in fetch habits: ", request.session);
     habitController.getHabits().then(function(habits) {
       console.log("Fetched habits!");
       response.status(200).send(habits);
