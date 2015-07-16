@@ -52,7 +52,7 @@ app.FormView = Marionette.ItemView.extend({
 
 });
 
-app.getRegion("formRegion").show(new app.FormView());
+//app.getRegion("formRegion").show(new app.FormView());
 
 //////////////////////////////////////////////////////////
 ////////////    Backbone Implementation     //////////////

@@ -21,7 +21,7 @@ app.HabitsView = Marionette.CompositeView.extend({
   },
 
   initialize: function() {
-    $('#view-habits').append(this.render().el);
+    //$('#view-habits').append(this.render().el);
   },
 
   onBeforeRender: function() {
