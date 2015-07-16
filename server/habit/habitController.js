@@ -28,18 +28,43 @@ module.exports = {
 
     return new Promise(function(resolve, reject) {
 
-      new Habit({
-        'action': habit.action,
-        'quantity': habit.quantity,
-        'timestamp': 'today',
-      }).save({}, {method: 'insert'})
-        .then(function(habit){
-          console.log("Habit saved!", habit);
-          resolve(habit);
-        })
-        .catch(function(error){
-          reject(error);
-        });
+      // if (habit[0]) {
+      //   console.log("habit id in saveHabit:", habit[0].id);
+      // }
+
+      // new Habit({'id': habit[0].habit_id}).fetch().then(function(found){
+      //   if(!found) {
+      //     new Habit({
+      //       'action': habit.action,
+      //       'quantity': habit.quantity,
+      //       'timestamp': 'today'
+      //     }).save()
+      //     .then(function(habit) {
+      //       console.log("Habit saved!", habit);
+      //       resolve(habit);
+      //     })
+      //     .catch(function(error){
+      //       reject(error);
+      //     });
+      //   }
+      // });
+
+      if (habit[0] === undefined) {
+
+        new Habit({
+          'action': habit.action,
+          'quantity': habit.quantity,
+          'timestamp': 'today',
+        }).save({}, {method: 'insert'})
+          .then(function(habit){
+            console.log("Habit saved!", habit);
+            resolve(habit);
+          })
+          .catch(function(error){
+            reject(error);
+          });
+        
+      }
 
     });
   }
