@@ -33,7 +33,23 @@ module.exports = function(app, express) {
 
   app.use(cookieParser());
   app.use(bodyParser.json());
+  app.use(session({
+    secret: 'banana pancakes',
+    saveUninitialized: true,
+    resave: true
+  }));
+
+  app.use(passport.initialize());
+  app.use(passport.session());
+
   app.use(express.static(__dirname + '/../../client'));
+
+  router.get('/auth/github', passport.authenticate('github', {scope: [ 'user:email' ]}));
+
+  router.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/' }),
+    function(request, response) {
+      response.redirect('/#home');
+    });
 
   router.get('/habits', appController.fetchHabits);
   router.post('/habits', appController.createInitialHabit);
@@ -43,5 +59,11 @@ module.exports = function(app, express) {
 
   app.use('/api', router);
 
+  var ensureAuthenticated = function(request, response, next) {
+    if (request.isAuthenticated()) {
+      return next();
+    }
+    res.redirect('/login');
+  };
 
 };
