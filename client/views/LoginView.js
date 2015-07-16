@@ -7,3 +7,4 @@ app.LoginView = Marionette.ItemView.extend({
   template: Handlebars.compile($('#loginTemplate').html()),
 
 });
+

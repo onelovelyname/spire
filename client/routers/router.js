@@ -7,8 +7,14 @@ app.Router = Backbone.Router.extend({
 
   routes: {
 
-    "": "home"
+    "": "login",
+    "home": "home"
 
+  },
+
+  login: function() {
+    console.log("inside of login function!");
+    app.getRegion("mainRegion").show(new app.LoginView());
   },
 
   home: function() {
