@@ -1,13 +1,14 @@
 var Habit = require('./habitModel');
 module.exports = {
   
-  getHabits: function() {
-    
+  getHabits: function(user) {
+      
+    console.log("user in getHabits: ", user);
+
     return new Promise(function(resolve, reject) {
       
-      new Habit().fetchAll({
-        withRelated: ['completions']
-      })
+      new Habit().query({ where: { user_github_id: user.github_id } })
+      .fetchAll({ withRelated: ['completions'] })
       .then(function(habits) {
 
         habits.forEach(function(habit) {
@@ -24,13 +25,14 @@ module.exports = {
   
   },
 
-  saveHabit: function(habit) {
+  saveHabit: function(habit, user) {
 
     return new Promise(function(resolve, reject) {
 
       if (habit[0] === undefined) {
 
         new Habit({
+          'user_github_id': user.github_id,
           'action': habit.action,
           'quantity': habit.quantity,
           'timestamp': 'today',
@@ -47,11 +49,12 @@ module.exports = {
 
         var editedHabit = {
           attributes: {
-            action: habit.action,
-            quantity: habit.quantity,
-            id: habit[0].habit_id
+            'user_github_id': user.github_id,
+            'action': habit.action,
+            'quantity': habit.quantity,
+            'id': habit[0].habit_id
           },
-          id: habit[0].habit_id
+          'id': habit[0].habit_id
         };
 
         resolve(editedHabit);

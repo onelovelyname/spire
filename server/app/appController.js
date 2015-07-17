@@ -29,7 +29,10 @@ module.exports = {
   },
   
   fetchHabits: function(request, response) {
-    habitController.getHabits().then(function(habits) {
+
+    var user = request.session.passport.user;
+
+    habitController.getHabits(user).then(function(habits) {
       console.log("Fetched habits!");
       response.status(200).send(habits);
     })
@@ -39,10 +42,13 @@ module.exports = {
   },
 
   createInitialHabit: function(request, response) {
-    console.log('createHabits request.body', request.body);
-
+    
+    // console.log('createHabits request.body', request.body);
+    // console.log('createHabits request.session', request.session);
+    
     var habit = request.body;
-    habitController.saveHabit(habit).then(function(habit){
+    var user = request.session.passport.user;
+    habitController.saveHabit(habit, user).then(function(habit){
       console.log("habit in createInitialHabit: ", habit);
       completionController.saveCompletions(request.body, habit).then(function(habitCompletion){
         console.log("saved habit and habitCompletion to db!!", habitCompletion);

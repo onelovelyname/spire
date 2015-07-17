@@ -6,10 +6,6 @@ module.exports = {
 
   saveCompletion: function(habitStatus, habitModel) {
 
-    console.log("habitStatus in saveCompletion: ", habitStatus);
-    console.log("habitModel in saveCompletion: ", habitModel);
-    console.log("today in saveCompletion: ", Helper.getDay("today"));
-
     return new Promise(function(resolve, reject) {
 
       new HabitCompletion({'habit_id': habitModel.id, 'start_date': Helper.getDay("today")})
