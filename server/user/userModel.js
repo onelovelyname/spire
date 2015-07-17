@@ -2,7 +2,8 @@ var db = require('../db');
 
 var User = db.Model.extend({
 
-  tableName: 'users'
+  tableName: 'users',
+  idAttribute: 'github_id'
 
 });
 

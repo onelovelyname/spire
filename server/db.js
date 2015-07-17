@@ -19,7 +19,7 @@ db.plugin('registry');
 db.knex.schema.hasTable('users').then(function(exists) {
   if(!exists) {
     db.knex.schema.createTable('users', function(user) {
-      //user.increments('id').primary();
+      //user.increments('id');
       user.integer('github_id', 20).primary();
       user.string('name', 30);
       user.string('email', 30);
