@@ -30,7 +30,6 @@ app.Habit = Backbone.Model.extend({
 
   updateStatus: function(event) {
 
-    console.log("this: ", this);
     // update status property in Habit Completion model
 
     var today = Date.parse(habitsView.getDay("today"));
@@ -51,7 +50,7 @@ app.Habit = Backbone.Model.extend({
     //send put request to api to update completions table
     this.save({}, {
       success: function(model) {
-        console.log("Status of habit updated in db! ", model);
+        //console.log("Status of habit updated in db! ", model);
       },
       error: function(error) {
         console.log("Status of habit unable to update in db: ", error);

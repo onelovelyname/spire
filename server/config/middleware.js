@@ -48,6 +48,8 @@ module.exports = function(app, express) {
   router.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/' }),
     function(request, response) {
 
+      console.log("request.session.passport.user: ", request.session.passport.user);
+
       // check if User is already saved in db
         // if not yet saved, add User to db with github id, name, and a Spire id
         response.redirect('/#home');
