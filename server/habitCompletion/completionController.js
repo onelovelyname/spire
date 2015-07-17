@@ -6,24 +6,57 @@ module.exports = {
 
   saveCompletion: function(habitStatus, habitModel) {
 
+    console.log("habitStatus in saveCompletion: ", habitStatus);
+    console.log("habitModel in saveCompletion: ", habitModel);
+    console.log("today in saveCompletion: ", Helper.getDay("today"));
+
     return new Promise(function(resolve, reject) {
 
-      new HabitCompletion({
-        'habit_id': habitModel.id,
-        'start_date': Helper.getDay("today"),
-        'end_date': Helper.getDay("tomorrow"),
-        'status': habitStatus
-      }).save({}, {method: 'insert'})
+      new HabitCompletion({'habit_id': habitModel.id, 'start_date': Helper.getDay("today")})
+        .fetch().then(function(found){
 
-      .then(function(completion) {
-        console.log('completion in saveCompletion', completion);
-        resolve(completion);
-      })
+          if (!found) {
 
-      .catch(function(error) {
-        console.log("error in saveCompletion: ", error);
-        reject(error);
-      });
+            new HabitCompletion({
+              'habit_id': habitModel.id,
+              'start_date': Helper.getDay("today"),
+              'end_date': Helper.getDay("tomorrow"),
+              'status': habitStatus
+            }).save({}, {method: 'insert'})
+
+            .then(function(completion) {
+              console.log('completion in saveCompletion', completion);
+              resolve(completion);
+            })
+
+            .catch(function(error) {
+              console.log("error in saveCompletion: ", error);
+              reject(error);
+            });
+
+          } else {
+
+
+            new HabitCompletion({
+              'id': found.id,
+              'habit_id': habitModel.id,
+              'start_date': Helper.getDay("today"),
+              'end_date': Helper.getDay("tomorrow"),
+            }).save({'status': habitStatus}, {patch: true, method: 'update'})
+
+            .then(function(completion) {
+              console.log('completion in saveCompletion', completion);
+              resolve(completion);
+            })
+
+            .catch(function(error) {
+              console.log("error in saveCompletion: ", error);
+              reject(error);
+            });
+
+          }
+
+        });
 
     });
 
@@ -43,7 +76,7 @@ module.exports = {
     return new Promise(function(resolve, reject) {
 
       Promise.all(mappedHabitCompletions).then(function(results){
-        console.log("results in saveCompletions: ", results);
+        //console.log("results in saveCompletions: ", results);
         resolve(results);
       })
       .catch(function(error) {

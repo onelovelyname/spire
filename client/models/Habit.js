@@ -30,6 +30,7 @@ app.Habit = Backbone.Model.extend({
 
   updateStatus: function(event) {
 
+    console.log("this: ", this);
     // update status property in Habit Completion model
 
     var today = Date.parse(habitsView.getDay("today"));
