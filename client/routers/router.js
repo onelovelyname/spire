@@ -2,6 +2,7 @@ app.Router = Backbone.Router.extend({
 
   initialize: function() {
     console.log("router initialized!");
+    app.getRegion('appRegion').show(layoutView);
   },
 
   routes: {
@@ -12,12 +13,12 @@ app.Router = Backbone.Router.extend({
   },
 
   login: function() {
-    app.getRegion("mainRegion").show(new app.LoginView());
+    layoutView.getRegion('main').show(new app.LoginView());
   },
 
   home: function() {
-    app.getRegion("formRegion").show(new app.FormView());
-    app.getRegion("mainRegion").show(habitsView);
+    layoutView.getRegion('form').show(new app.FormView());
+    layoutView.getRegion('main').show(habitsView);
   },
 
   execute: function(callback, args, name) {

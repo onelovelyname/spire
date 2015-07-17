@@ -8,14 +8,21 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,300' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <header id="header-region"></header>
-    <section id="form-region"></section>
-    <section id="main-region">
-      <section id="view-habits"></section>      
-    </section>
-    <footer id="footer-region"></footer>
+    <section id="app-region"></section>
 
   <!-- HANDLEBARS TEMPLATES -->
+
+  <script id="layoutTemplate" type="text/x-handlebars-template">
+
+    <header id="header-region"></header>
+    <section>
+      <section id="form-region"></section>
+      <section id="main-region"></section> 
+    </section>
+    <aside id="viz-region"></aside>
+    <footer id="footer-region"></footer>    
+
+  </script>
 
   <script id="formTemplate" type="text/x-handlebars-template">
     <h2>Create Habit</h2>
@@ -77,6 +84,7 @@
     <script src="views/FormView.js"></script>
     <script src="views/LoginView.js"></script>
 
+    <script src="views/LayoutView.js"></script>
     <script src="routers/router.js"></script>
   
   </body>
