@@ -4,12 +4,21 @@ var passport = require('passport');
 var GitHubStrategy = require('passport-github2').Strategy;
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var UserController = require('../user/UserController.js');
 
 var GITHUB_CLIENT_ID = '8482186f19648d881478';
 var GITHUB_CLIENT_SECRET = 'ed4ba6d32892d75b86486f38d03ec56dc9157005';
 
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+
+  var sessionUser = {
+    github_id: user.id,
+    name: user.displayName,
+    email: user.emails[0].value
+  };
+
+  done(null, sessionUser);
+
 });
 
 passport.deserializeUser(function(obj, done) {
@@ -48,11 +57,16 @@ module.exports = function(app, express) {
   router.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/' }),
     function(request, response) {
 
-      console.log("request.session.passport.user: ", request.session.passport.user);
-
+      UserController.createUser(request.session.passport.user)
+      .then(function(user) {
+        console.log("user in middleware: ", user);
+      })
+      .catch(function(error) {
+        console.dir(error);
+      });
       // check if User is already saved in db
         // if not yet saved, add User to db with github id, name, and a Spire id
-        response.redirect('/#home');
+      response.redirect('/#home');
 
     });
 

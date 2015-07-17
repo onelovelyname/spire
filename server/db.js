@@ -30,6 +30,7 @@ db.knex.schema.hasTable('users').then(function(exists) {
         if(!exists) {
           db.knex.schema.createTable('habits', function(habit){
             habit.increments('id').primary();
+            habit.integer('user_id', 20).references('users.id');
             habit.string('action', 100);
             habit.integer('quantity', 10);
             habit.timestamp('timestamp', 30);
