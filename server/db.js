@@ -19,8 +19,8 @@ db.plugin('registry');
 db.knex.schema.hasTable('users').then(function(exists) {
   if(!exists) {
     db.knex.schema.createTable('users', function(user) {
-      user.increments('id').primary();
-      user.integer('github_id', 20);
+      //user.increments('id').primary();
+      user.integer('github_id', 20).primary();
       user.string('name', 30);
       user.string('email', 30);
     }).then(function(table) {
@@ -30,7 +30,7 @@ db.knex.schema.hasTable('users').then(function(exists) {
         if(!exists) {
           db.knex.schema.createTable('habits', function(habit){
             habit.increments('id').primary();
-            habit.integer('user_id', 20).references('users.id');
+            habit.integer('user_github_id', 20).references('users.github_id');
             habit.string('action', 100);
             habit.integer('quantity', 10);
             habit.timestamp('timestamp', 30);
