@@ -21,7 +21,7 @@ app.HabitView = Marionette.ItemView.extend({
       this.model.updateStatus(event);
     },
     "click .habitAction": function(event) {
-      console.log("event dataset in habitView heard: ", event.currentTarget.dataset.id);
+
       layoutView.getRegion('history').show(new app.HistoryView({model: this.model}));
 
     }
