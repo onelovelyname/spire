@@ -19,7 +19,7 @@
       <section id="form-region"></section>
       <section id="main-region"></section> 
     </section>
-    <aside id="viz-region"></aside>
+    <aside id="history-region"></aside>
     <footer id="footer-region"></footer>    
 
   </script>
@@ -50,8 +50,8 @@
   </script>
   
   <script id="habitTemplate" type="text/x-handlebars-template">
-    <td><button id="{{action}}">Complete</button></td>
-    <td>{{ action }}</td>
+    <td><button>Complete</button></td>
+    <td id="action">{{ action }}</td>
     <td>{{ quantity }}</td>
     <td> Get Status </td>
   </script>
@@ -62,6 +62,10 @@
     <input type="button" onclick="location.href='api/auth/github';" value="Sign in with GitHub"/>
   </script>
 
+  <script id="historyTemplate" type="text/x-handlebars-template">
+    <h1>History Template</h1>
+    
+  </script>
     
 
   <!-- DEPENDENCIES -->
@@ -83,6 +87,8 @@
     <script src="views/HabitsView.js"></script>
     <script src="views/FormView.js"></script>
     <script src="views/LoginView.js"></script>
+    <script src="views/HistoryView.js"></script>
+
 
     <script src="views/LayoutView.js"></script>
     <script src="routers/router.js"></script>

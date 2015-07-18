@@ -7,7 +7,7 @@ var app = app || {};
 app.HabitView = Marionette.ItemView.extend({
 
   //template: Handlebars.compile($('#habitTemplate').html()),
-  template: _.template("<td><button id='<%= modelId %>'>Complete</button></td><td><%= action %></td><td><%= quantity %></td><td><%= calculateStatus(getStatusFromModel()) %></td>"),
+  template: _.template("<td><button id='<%= modelId %>'>Complete</button></td><td data-id='<%= modelId %>' class='habitAction'><%= action %></td><td><%= quantity %></td><td><%= calculateStatus(getStatusFromModel()) %></td>"),
 
   tagName: 'tr',
 
@@ -19,8 +19,13 @@ app.HabitView = Marionette.ItemView.extend({
 
     "click button": function(event) {
       this.model.updateStatus(event);
-      //this.render();
+    },
+    "click .habitAction": function(event) {
+      console.log("event dataset in habitView heard: ", event.currentTarget.dataset.id);
+      layoutView.getRegion('history').show(new app.HistoryView({model: this.model}));
+
     }
+    // click habit action to view the visualization
 
   },
 

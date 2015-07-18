@@ -8,7 +8,7 @@ app.LayoutView = Marionette.LayoutView.extend({
     'header': '#header-region',
     'form': '#form-region',
     'main': '#main-region',
-    'aside': '#viz-region',
+    'history': '#history-region',
     'footer': '#footer-region'
   }
 
