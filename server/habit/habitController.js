@@ -7,19 +7,38 @@ module.exports = {
 
     return new Promise(function(resolve, reject) {
       
-      new Habit().query({ where: { user_github_id: user.github_id } })
-      .fetchAll({ withRelated: ['completions'] })
-      .then(function(habits) {
+      if (user) {
 
-        habits.forEach(function(habit) {
-          var completions = habit.related('completions').models;
+        new Habit().query({ where: { user_github_id: user.github_id } })
+        .fetchAll({ withRelated: ['completions'] })
+        .then(function(habits) {
+
+          habits.forEach(function(habit) {
+            var completions = habit.related('completions').models;
+          });
+
+          resolve(habits);
+        
+        }).catch(function(error) {
+          reject(error);
         });
 
-        resolve(habits);
-      
-      }).catch(function(error) {
-        reject(error);
-      });
+      } else {
+
+        new Habit().fetchAll({ withRelated: ['completions'] })
+        .then(function(habits) {
+
+          habits.forEach(function(habit) {
+            var completions = habit.related('completions').models;
+          });
+
+          resolve(habits);
+        
+        }).catch(function(error) {
+          reject(error);
+        });
+
+      }
 
     });
   
