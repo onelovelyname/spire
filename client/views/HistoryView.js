@@ -6,6 +6,11 @@ app.HistoryView = Marionette.ItemView.extend({
 
   template: _.template("<p>HistoryView</p><p><%= action %></p><table> <%= createList() %> </table>"),
 
+  initialize: function() {
+    this.chart = new app.Chart(this.model);
+    debugger;
+  },
+
   templateHelpers: function () {
 
     console.log("model in HistoryView: ", this.model);
