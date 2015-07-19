@@ -25,7 +25,6 @@ app.HabitView = Marionette.ItemView.extend({
       layoutView.getRegion('history').show(new app.HistoryView({model: this.model}));
 
     }
-    // click habit action to view the visualization
 
   },
 
