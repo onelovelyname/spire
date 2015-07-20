@@ -19,13 +19,19 @@ app.HistoryView = Marionette.ItemView.extend({
 
   onShow: function() {
 
-    this.chart = new app.Chart();
-    this.chart(this.model, '#history-region');
+    var context = this;
+    this.chart = app.Chart;
+    this.chart.processData(this.model).then(function(processedData) {
+      context.chart.createChart(processedData, '#history-region');
+    });
 
   },
 
   updateChart: function() {
-    this.chart(this.model, '#history-region');
+    var context = this;
+    this.chart.processData(this.model).then(function(processedData){
+      context.chart.updateChart(processedData, '#history-region');
+    });
   },
 
   templateHelpers: function () {
