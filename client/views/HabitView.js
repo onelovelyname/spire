@@ -20,10 +20,9 @@ app.HabitView = Marionette.ItemView.extend({
     "click button": function(event) {
       this.model.updateStatus(event);
     },
+
     "click .habitAction": function(event) {
-
       layoutView.getRegion('history').show(new app.HistoryView({model: this.model}));
-
     }
 
   },

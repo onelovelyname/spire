@@ -4,18 +4,28 @@ app.HistoryView = Marionette.ItemView.extend({
 
   //template: Handlebars.compile($('#historyTemplate').html())
 
-  template: _.template("<h2>History of: <%= action %></h2>"),
+  template: _.template("<h2>History of: <%= action %></h2><table><%= createList() %> </table>"),
+
+  completionEvents: {
+    "change:status": "render updateChart"
+  },
 
   initialize: function() {
 
-  },
+    _.extend(this.model.get("completions"), Backbone.Events);
+    this.bindEntityEvents(this.model.get("completions"), this.completionEvents);
 
+  },
 
   onShow: function() {
 
     this.chart = new app.Chart();
     this.chart(this.model, '#history-region');
 
+  },
+
+  updateChart: function() {
+    this.chart(this.model, '#history-region');
   },
 
   templateHelpers: function () {

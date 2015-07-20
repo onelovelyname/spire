@@ -32,6 +32,8 @@ app.Chart = function (data, selection) {
     
   });
 
+  console.log("processedData: ", processedData);
+
     var width = 960,
       height = 136,
       cellSize = 17; // cell size
@@ -96,12 +98,13 @@ app.Chart = function (data, selection) {
         .attr("d", monthPath);
 
     var filteredRect = rect.filter(function(d) {
+      console.log("processedData in filteredRect: ", processedData);
       return d in processedData;
     })
       .attr("class", function(d) {
-        // console.log("d in filteredRect class", d);
-        // console.log("processedData: ", processedData);
-        // console.log("color(processedData[d])", color(processedData[d]));
+        console.log("d in filteredRect class", d);
+        console.log("processedData: ", processedData);
+        console.log("color(processedData[d])", color(processedData[d]));
         return "day " + color(processedData[d]);
       });
 
