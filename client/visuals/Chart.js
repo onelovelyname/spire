@@ -73,7 +73,7 @@ app.Chart = {
           });
 
       var rect = svg.selectAll(".day")
-          .data(function(d) {
+        .data(function(d) {
             // d is 2015, as set in svg data method
             // this method returns all days in range of 2015
             return d3.time.days(new Date(d, 0, 1), new Date(d + 1, 0, 1));
@@ -90,9 +90,22 @@ app.Chart = {
           })
           .datum(format);
 
+
+        rect.filter(function(d) {
+          return d in processedData;
+        })
+        .attr("class", function(d) {
+            console.log("color(processedData[d])", color(processedData[d]));
+            return "day " + color(processedData[d]);
+          });
+
       rect.append("title")
           .text(function(d) {
-            return d;
+            if(processedData[d] !== undefined) {
+              return d + ": " + processedData[d];
+            } else {
+              return d;
+            }
           });
 
       svg.selectAll(".month")
@@ -105,15 +118,6 @@ app.Chart = {
           .attr("class", "month")
           .attr("d", monthPath);
 
-      var filteredRect = rect.filter(function(d) {
-        return d in processedData;
-      })
-        .attr("class", function(d) {
-          console.log("d in filteredRect class", d);
-          console.log("processedData: ", processedData);
-          console.log("color(processedData[d])", color(processedData[d]));
-          return "day " + color(processedData[d]);
-        });
 
       function monthPath(t0) {
         var t1 = new Date(t0.getFullYear(), t0.getMonth() + 1, 0),
@@ -128,19 +132,27 @@ app.Chart = {
 
   },
 
-  updateChart: function(processedData, selection) {
+  updateChart: function (processedData, selection) {
+   
+    var color = d3.scale.quantize()
+      .domain([0.0, 1.0])
+      .range(d3.range(6).map(function(d) {
+        return "q" + d;
+      }));
 
-    console.log("processedData: ", processedData);
+    var rects = d3.selectAll('svg').selectAll('.day')
+    .filter(function(d) {
+      return d in processedData;
+    });
 
-    console.log("Selection: ", selection);
+    rects.attr("class", function(d) {
+        console.log("color(processedData[d])", color(processedData[d]));
+        return "day " + color(processedData[d]);
+      });
 
   }
 
 };
-
-
-
-
 
 // Attribution: http://bl.ocks.org/mbostock/4063318
 

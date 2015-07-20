@@ -4,7 +4,10 @@ app.HistoryView = Marionette.ItemView.extend({
 
   //template: Handlebars.compile($('#historyTemplate').html())
 
-  template: _.template("<h2>History of: <%= action %></h2><table><%= createList() %> </table>"),
+  // template: _.template("<h2>History of: <%= action %></h2><table><%= createList() %> </table>"),
+
+  template: _.template("<h2>History of: <%= action %></h2>"),
+
 
   completionEvents: {
     "change:status": "render updateChart"
@@ -19,19 +22,18 @@ app.HistoryView = Marionette.ItemView.extend({
 
   onShow: function() {
 
-    var context = this;
-    this.chart = app.Chart;
-    this.chart.processData(this.model).then(function(processedData) {
-      context.chart.createChart(processedData, '#history-region');
+    app.Chart.processData(this.model).then(function(processedData) {
+      app.Chart.createChart(processedData, '#history-region');
     });
 
   },
 
   updateChart: function() {
-    var context = this;
-    this.chart.processData(this.model).then(function(processedData){
-      context.chart.updateChart(processedData, '#history-region');
+    
+    app.Chart.processData(this.model).then(function(processedData){
+      app.Chart.updateChart(processedData, '#history-region');
     });
+  
   },
 
   templateHelpers: function () {
