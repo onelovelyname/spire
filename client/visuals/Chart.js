@@ -5,9 +5,34 @@ var app = app || {},
 
 app.Chart = function (data, selection) {
 
-  this.data = data;
-
   return function (data, selection) {
+
+  var unProcessedData = data.get("completions");
+
+  var processedData = {};
+
+  unProcessedData.forEach(function(completion) {
+  
+      var day = new Date(completion.start_date);
+      var dd = day.getDate();
+      var mm = day.getMonth() + 1;
+      var yyyy = day.getFullYear();
+
+      if(dd<10) {
+        dd ='0'+ dd;
+      }
+
+      if(mm<10) {
+        mm='0'+mm;
+      }
+
+      day = yyyy + '-' + mm + '-' + dd;
+
+      processedData[day] = completion.status / data.get("quantity");
+    
+  });
+
+  console.log("processedData in chart: ", processedData);
 
     var width = 960,
       height = 136,
@@ -32,40 +57,51 @@ app.Chart = function (data, selection) {
      svg.append("text")
         .attr("transform", "translate(-6," + cellSize * 3.5 + ")rotate(-90)")
         .style("text-anchor", "middle")
-        .text(function(d) { return d; });
+        .text(function(d) {
+          console.log("d in svg append text: ", d);
+          return d;
+        });
 
     var rect = svg.selectAll(".day")
-        .data(function(d) { return d3.time.days(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
+        .data(function(d) {
+          // d is 2015, as set in svg data method
+          // this method returns all days in range of 2015
+          return d3.time.days(new Date(d, 0, 1), new Date(d + 1, 0, 1));
+        })
       .enter().append("rect")
         .attr("class", "day")
         .attr("width", cellSize)
         .attr("height", cellSize)
-        .attr("x", function(d) { return d3.time.weekOfYear(d) * cellSize; })
-        .attr("y", function(d) { return d.getDay() * cellSize; })
+        .attr("x", function(d) {
+          return d3.time.weekOfYear(d) * cellSize;
+        })
+        .attr("y", function(d) {
+          return d.getDay() * cellSize;
+        })
         .datum(format);
 
     rect.append("title")
-        .text(function(d) { return d; });
+        .text(function(d) {
+          return d;
+        });
 
     svg.selectAll(".month")
-        .data(function(d) { return d3.time.months(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
+        .data(function(d) {
+          // d is 2015, as set in svg data method
+          // this method returns all months in range of 2015
+          return d3.time.months(new Date(d, 0, 1), new Date(d + 1, 0, 1));
+        })
       .enter().append("path")
         .attr("class", "month")
         .attr("d", monthPath);
 
-    // d3.csv("dji.csv", function(error, csv) {
-    //   if (error) throw error;
-
-    //   var data = d3.nest()
-    //     .key(function(d) { return d.Date; })
-    //     .rollup(function(d) { return (d[0].Close - d[0].Open) / d[0].Open; })
-    //     .map(csv);
-
-    //   rect.filter(function(d) { return d in data; })
-    //       .attr("class", function(d) { return "day " + color(data[d]); })
-    //     .select("title")
-    //       .text(function(d) { return d + ": " + percent(data[d]); });
-    // });
+    var filteredRect = rect.filter(function(d) {
+      return d in processedData;
+    })
+      .attr("class", function(d) {
+        console.log("d in filter class: ", d);
+        return "day " + color(processedData[d]);
+      });
 
     function monthPath(t0) {
       var t1 = new Date(t0.getFullYear(), t0.getMonth() + 1, 0),
