@@ -32,8 +32,6 @@ app.Chart = function (data, selection) {
     
   });
 
-  console.log("processedData in chart: ", processedData);
-
     var width = 960,
       height = 136,
       cellSize = 17; // cell size
@@ -42,15 +40,17 @@ app.Chart = function (data, selection) {
       format = d3.time.format("%Y-%m-%d");
 
     var color = d3.scale.quantize()
-      .domain([-0.05, 0.05])
-      .range(d3.range(11).map(function(d) { return "q" + d + "-11"; }));
+      .domain([0.0, 1.0])
+      .range(d3.range(6).map(function(d) {
+        return "q" + d;
+      }));
 
     var svg = d3.select(selection).selectAll("svg")
         .data(d3.range(2015, 2016))
       .enter().append("svg")
         .attr("width", width)
         .attr("height", height)
-        .attr("class", "RdYlGn")
+        .attr("class", "rgb-color")
       .append("g")
         .attr("transform", "translate(" + ((width - cellSize * 53) / 2) + "," + (height - cellSize * 7 - 1) + ")");
 
@@ -58,7 +58,7 @@ app.Chart = function (data, selection) {
         .attr("transform", "translate(-6," + cellSize * 3.5 + ")rotate(-90)")
         .style("text-anchor", "middle")
         .text(function(d) {
-          console.log("d in svg append text: ", d);
+          // this d refers to the range of years set above in the data method
           return d;
         });
 
@@ -99,7 +99,9 @@ app.Chart = function (data, selection) {
       return d in processedData;
     })
       .attr("class", function(d) {
-        console.log("d in filter class: ", d);
+        // console.log("d in filteredRect class", d);
+        // console.log("processedData: ", processedData);
+        // console.log("color(processedData[d])", color(processedData[d]));
         return "day " + color(processedData[d]);
       });
 

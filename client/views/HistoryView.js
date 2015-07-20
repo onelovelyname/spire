@@ -4,7 +4,7 @@ app.HistoryView = Marionette.ItemView.extend({
 
   //template: Handlebars.compile($('#historyTemplate').html())
 
-  template: _.template("<p>HistoryView</p><p><%= action %></p>"),
+  template: _.template("<h2>History of: <%= action %></h2>"),
 
   initialize: function() {
 
@@ -13,8 +13,6 @@ app.HistoryView = Marionette.ItemView.extend({
 
   onShow: function() {
 
-    console.log("item shown in HistoryView!");
-    
     this.chart = new app.Chart();
     this.chart(this.model, '#history-region');
 
@@ -22,7 +20,6 @@ app.HistoryView = Marionette.ItemView.extend({
 
   templateHelpers: function () {
 
-    console.log("model in HistoryView: ", this.model);
     var context = this;
 
     return {
