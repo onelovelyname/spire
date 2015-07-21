@@ -2,9 +2,9 @@ var app = app || {};
 
 app.HeaderView = Marionette.ItemView.extend({
 
-  tagName: "header",
+  tagName: "section",
 
-  template: _.template("<h2>Welcome, <%= name %>!</h2>"),
+  template: _.template("<img src='../assets/spire_logo.png' class='greeting'></img><h3 class='greeting'>Welcome, <%= name %>!</h3>"),
 
   templateHelpers: function() {
 

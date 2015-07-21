@@ -42,9 +42,9 @@ app.Chart = {
 
   createChart: function(processedData, selection) {
 
-      var width = 960,
-        height = 136,
-        cellSize = 17; // cell size
+      var width = $(window).width() * 0.60 || 960,
+        height = (width * 0.14),
+        cellSize = 10; // cell size
 
       var percent = d3.format(".1%"),
         format = d3.time.format("%Y-%m-%d");

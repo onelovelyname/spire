@@ -25,9 +25,7 @@ app.HabitsView = Marionette.CompositeView.extend({
   },
 
   onBeforeRender: function() {
-    // send query to server for all habits in db with given user id
-    // add status to each habit 
-    // add all habits into collection prior to render
+
     this.collection.fetch({
       success: function(collection) {
         console.log("habits from db: ", collection);
@@ -36,6 +34,7 @@ app.HabitsView = Marionette.CompositeView.extend({
         console.error("There was an error fetching your habits: ", error);
       }
     });
+
   },
 
   getDay: function(date) {
