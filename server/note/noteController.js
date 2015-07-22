@@ -6,6 +6,7 @@ module.exports = {
   saveNote: function(note) {
 
     var noteData = note.notes[note.notes.length - 1];
+    debugger;
 
     return new Promise(function(resolve, reject) {
 

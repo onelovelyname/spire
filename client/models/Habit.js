@@ -30,40 +30,29 @@ app.Habit = Backbone.Model.extend({
 
   updateStatus: function(event) {
 
-    // update status property in Habit Completion model
+    console.log("inside of updateStatus");
 
-    var today = Date.parse(habitsView.getDay("today"));
-
-    var quantity = this.get("quantity");
-  
     var completions = this.get("completions");
+    var quantity = this.get("quantity");
+    var today = Date.parse(habitsView.getDay("today"));
+    
+    console.log("completions in updateStatus: ", completions);
+    
+    debugger;
     
     var newCompletions = this.updateCompletions(completions, quantity, today);
+    //console.log("newCompletions in updateStatus:", newCompletions);
 
     this.set("completions", newCompletions);
 
-    //_.extend(this.get("completions"), Backbone.Events);
-
+    _.extend(completions, Backbone.Events);
     completions.trigger("change:status", completions);
-    //this.get("completions").trigger("change:status", this.get('completions'));
-    //this.trigger("change", this);
 
-    completions.forEach(function(completion) {
-      if(Date.parse(completion.start_date) === today) {
-        if(completion.status === quantity) {
-          completions.trigger("complete", completions);
-        }
-      }
-    });
-
-    //send put request to api to update completions table
+    var model = this;
 
     this.save({}, {
       success: function(model) {
         console.log("Status of habit updated in db! ", model);
-
-
-        // model.completions.start_date
       },
       error: function(error) {
         console.log("Status of habit unable to update in db: ", error);
@@ -73,6 +62,13 @@ app.Habit = Backbone.Model.extend({
     //Radio.execute("day", "event:complete");
     //Day Model
     // Radio.handle("day", "event:complete", functionName);
+    completions.forEach(function(completion) {
+      if(Date.parse(completion.start_date) === today) {
+        if(completion.status === quantity) {
+          completions.trigger("complete", model);
+        }
+      }
+    });
 
 
   }

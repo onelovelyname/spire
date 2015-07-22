@@ -62,8 +62,10 @@ module.exports = {
 
     var context = this;
 
-    var habitCompletionsCollection = request.completions;
+
+    var habitCompletionsCollection = request.completions.models;
     // console.log("habitCompletionsCollection in saveCompletions: ", habitCompletionsCollection);
+    debugger;
 
     var mappedHabitCompletions = habitCompletionsCollection.map(function(habitCompletionModel) {
           return context.saveCompletion(habitCompletionModel.status, habit);
@@ -106,7 +108,7 @@ module.exports = {
     return new Promise(function(resolve, reject) {
 
       new HabitCompletion({habit_id: habitModelId, id: completionModelId}).save({status: status}, {method: 'update', patch: true}).then(function(model) {
-        console.log("Saved completion to the db from saveExistingCompletion!!!");
+        console.log("Saved completion to the db from saveExistingCompletion!!!", model);
         resolve(model);
       })
       .catch(function(error) {

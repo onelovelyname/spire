@@ -7,6 +7,10 @@ var noteController = require('../note/noteController.js');
 
 module.exports = {
 
+  definePatch: function(request, response) {
+    console.log("request.body: ", request.body);
+  },
+
   createRecurringHabitCompletion: function() {
     // first, fetch habits 
     habitController.getHabits().then(function(habits){
@@ -78,16 +82,25 @@ module.exports = {
   },
 
   updateHabitStatus: function(request, response) {
+    console.log("request.body in updateHabitStatus:", request.body);
     var today = Helper.getDay("today");
     var completions = request.body.completions;
+    console.log("completions in updateHabitStatus:", completions);
     var habitModelId = request.body.id;
     completions.forEach(function(completion) {
       if(Date.parse(completion.start_date) === Date.parse(today)) {
         console.log("completion in updateHabitStatus: ", completion);
-        completionController.saveExistingCompletion(habitModelId, completion.id, completion.status)
+        console.log("habitModelId: ", habitModelId);
+        console.log("completionId: ", completion.id);
+        console.log("completionStatus: ", completion.status);
 
+        completionController.saveExistingCompletion(habitModelId, completion.id, completion.status)
         .then(function(results){
-          response.status(200).send(results);
+          console.log("results: ", results);
+          response.status(200).send(request.body);
+        })
+        .catch(function(error) {
+          console.log("error logged in updateHabitStatus: ", error);
         });
 
       }

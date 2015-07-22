@@ -13,7 +13,12 @@ app.HabitView = Marionette.ItemView.extend({
 
   completionEvents: {
     "change:status": "render",
+    //"change:status": "test",
     "complete": "createNoteForm"
+  },
+
+  test: function() {
+    console.log("Change in status heard in HabitView");
   },
 
   events: {
@@ -43,14 +48,13 @@ app.HabitView = Marionette.ItemView.extend({
 
   initialize: function() {
 
-    _.extend(this.model.get("completions"), Backbone.Events);
+    //_.extend(this.model.get("completions"), Backbone.Events);
     this.bindEntityEvents(this.model.get("completions"), this.completionEvents);
     
   },
 
   createNoteForm: function() {
     console.log("Completed habit for the day (inside createNote)!!");
-    //debugger;
     layoutView.getRegion('noteForm').show(new app.NoteFormView({ model: this.model }));
   },
   
@@ -79,13 +83,13 @@ app.HabitView = Marionette.ItemView.extend({
         var completions = model.get("completions");
 
         for (var i = 0; i < completions.length; i++) {
-          if(completions[i].attributes) {
-            if(Date.parse(completions[i].attributes.start_date) === today) {
-              return completions[i].attributes.status;
-            }
-          } else {
+          if(!completions[i].attributes) {
             if(Date.parse(completions[i].start_date) === today) {
               return completions[i].status;
+            }
+          } else {
+            if(Date.parse(completions[i].attributes.start_date) === today) {
+              return completions[i].attributes.status;
             }
           }
         }
