@@ -7,7 +7,7 @@ var app = app || {};
 app.HabitView = Marionette.ItemView.extend({
 
   //template: Handlebars.compile($('#habitTemplate').html()),
-  template: _.template("<td><button id='<%= modelId %>'>Complete</button></td><td data-id='<%= modelId %>' class='habitAction'><%= action %></td><td><%= quantity %></td><td><%= calculateStatus(getStatusFromModel()) %></td>"),
+  template: _.template("<td><button id='<%= modelId %>' class='button-success pure-button'>Complete</button></td><td data-id='<%= modelId %>' class='habitAction'><%= action %></td><td><%= quantity %></td><td><%= calculateStatus(getStatusFromModel()) %></td>"),
 
   tagName: 'tr',
 
