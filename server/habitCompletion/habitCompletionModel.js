@@ -9,6 +9,4 @@ var Completion = db.Model.extend({
 
 });
 
-//module.exports = Completion;
-
 module.exports = db.model('Completion', Completion);

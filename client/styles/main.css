@@ -90,3 +90,7 @@ img.greeting {
   font-size: 10px;
   fill: rgb(87,104,122);
 }
+
+textarea {
+  resize: none;
+}

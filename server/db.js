@@ -47,6 +47,20 @@ db.knex.schema.hasTable('users').then(function(exists) {
                   habitCompletion.float('status');
                 }).then(function(table){
                   console.log('Created Completions Table', table);
+
+                  db.knex.schema.hasTable('notes').then(function(exists){
+                    if(!exists) {
+                      db.knex.schema.createTable('notes', function(note){
+                        note.increments('id').primary();
+                        note.integer('habit_id').references('habits.id');
+                        note.string('text');
+                        note.date('start_date');
+                      }).then(function(table){
+                        console.log('Created Notes Table', table);
+                      });
+                    }
+                  });
+
                 });
               }
             });

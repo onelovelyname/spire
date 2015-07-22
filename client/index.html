@@ -18,7 +18,8 @@
     <section id="content-region">
       <section id="form-region"></section>
       <section id="main-region"></section> 
-      <aside id="history-region"></aside>
+      <section id="history-region"></section>
+      <section id="note-region"></section>
     </section>
     <footer id="footer-region"></footer>    
 
@@ -31,6 +32,12 @@
       <input type='text' id='quantity' placeholder='Enter quantity'/> 
       times per day
     </p>
+    <button action='submit'>Submit</button>
+  </script>
+
+  <script id="noteFormTemplate" type="text/x-handlebars-template">
+    <h2>Add Note</h2>
+      <textarea rows="4" cols="50" wrap="soft" type='text' id='noteText' placeholder='Enter note'/> 
     <button action='submit'>Submit</button>
   </script>
 
@@ -81,8 +88,10 @@
 
     <script src="models/Habit.js"></script>
     <script src="models/HabitCompletion.js"></script>
+    <script src="models/Note.js"></script>
     <script src="collections/Habits.js"></script>
     <script src="collections/HabitCompletions.js"></script>
+    <script src="collections/Notes.js"></script>
 
     <script src="visuals/Chart.js"></script>
 
@@ -91,8 +100,9 @@
     <script src="views/FormView.js"></script>
     <script src="views/LoginView.js"></script>
     <script src="views/HistoryView.js"></script>
-    <script src="views/LayoutView.js"></script>
+    <script src="views/NoteFormView.js"></script>
     <script src="views/HeaderView.js"></script>
+    <script src="views/LayoutView.js"></script>
 
     <script src="routers/router.js"></script>
   

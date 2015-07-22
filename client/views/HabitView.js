@@ -12,7 +12,8 @@ app.HabitView = Marionette.ItemView.extend({
   tagName: 'tr',
 
   completionEvents: {
-    "change:status": "render"
+    "change:status": "render",
+    "complete": "createNoteForm"
   },
 
   events: {
@@ -32,6 +33,12 @@ app.HabitView = Marionette.ItemView.extend({
     _.extend(this.model.get("completions"), Backbone.Events);
     this.bindEntityEvents(this.model.get("completions"), this.completionEvents);
     
+  },
+
+  createNoteForm: function() {
+    console.log("Completed habit for the day (inside createNote)!!");
+    //debugger;
+    layoutView.getRegion('noteForm').show(new app.NoteFormView({ model: this.model }));
   },
   
   templateHelpers: function() {

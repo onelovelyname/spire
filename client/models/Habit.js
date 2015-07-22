@@ -44,13 +44,26 @@ app.Habit = Backbone.Model.extend({
 
     //_.extend(this.get("completions"), Backbone.Events);
 
-    this.get("completions").trigger("change:status", this.get('completions'));
+    completions.trigger("change:status", completions);
+    //this.get("completions").trigger("change:status", this.get('completions'));
     //this.trigger("change", this);
 
+    completions.forEach(function(completion) {
+      if(Date.parse(completion.start_date) === today) {
+        if(completion.status === quantity) {
+          completions.trigger("complete", completions);
+        }
+      }
+    });
+
     //send put request to api to update completions table
+
     this.save({}, {
       success: function(model) {
-        //console.log("Status of habit updated in db! ", model);
+        console.log("Status of habit updated in db! ", model);
+
+
+        // model.completions.start_date
       },
       error: function(error) {
         console.log("Status of habit unable to update in db: ", error);

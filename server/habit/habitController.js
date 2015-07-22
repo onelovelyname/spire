@@ -10,11 +10,12 @@ module.exports = {
       if (user) {
 
         new Habit().query({ where: { user_github_id: user.github_id } })
-        .fetchAll({ withRelated: ['completions'] })
+        .fetchAll({ withRelated: ['completions', 'notes'] })
         .then(function(habits) {
-
           habits.forEach(function(habit) {
             var completions = habit.related('completions').models;
+            var notes = habit.related('notes').models;
+            console.log("habit in getHabits:", habit);
           });
 
           resolve(habits);

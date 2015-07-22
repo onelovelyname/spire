@@ -2,6 +2,7 @@ var habitController = require('../habit/habitController.js');
 var completionController = require('../habitCompletion/completionController.js');
 var _ = require('underscore');
 var Helper = require('../config/helpers.js');
+var noteController = require('../note/noteController.js');
 
 
 module.exports = {
@@ -65,6 +66,14 @@ module.exports = {
     var query = request.query;
     completionController.getHabitCompletion(query).then(function(habitCompletion){
       response.status(200).send(habitCompletion);
+    });
+  },
+
+  createNote: function(request,response) {
+    var note = request.body;
+    noteController.saveNote(note).then(function(note){
+      console.log("note saved in createNote: ", note);
+      response.status(200).send(note);
     });
   },
 

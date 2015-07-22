@@ -77,7 +77,7 @@ module.exports = function(app, express) {
   router.get('/habits', appController.fetchHabits);
   router.post('/habits', appController.createInitialHabit);
   router.put('/habits', appController.updateHabitStatus);
-
+  router.patch('/habits', appController.createNote);
   router.get('/habitCompletion', appController.fetchHabitCompletion);
 
   app.use('/api', router);
