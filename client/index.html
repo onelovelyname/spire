@@ -19,7 +19,8 @@
       <section id="form-region"></section>
       <section id="main-region"></section> 
       <section id="history-region"></section>
-      <section id="note-region"></section>
+      <section id="notes-region"></section>
+      <section id="note-form-region"></section>
     </section>
     <footer id="footer-region"></footer>    
 
@@ -72,6 +73,19 @@
   <script id="headerTemplate" type="text/x-handlebars-template">
     <h1>Header Template</h1>
   </script>
+
+  <script id="notesTemplate" type="text/x-handlebars-template">
+    <h2>Notes</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Date</th>
+        <th>Text</th>
+      </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </script>
     
 
   <!-- DEPENDENCIES -->
@@ -101,6 +115,8 @@
     <script src="views/LoginView.js"></script>
     <script src="views/HistoryView.js"></script>
     <script src="views/NoteFormView.js"></script>
+    <script src="views/NoteView.js"></script>
+    <script src="views/NotesView.js"></script>
     <script src="views/HeaderView.js"></script>
     <script src="views/LayoutView.js"></script>
 

@@ -23,7 +23,20 @@ app.HabitView = Marionette.ItemView.extend({
     },
 
     "click .habitAction": function(event) {
+
       layoutView.getRegion('history').show(new app.HistoryView({model: this.model}));
+
+      var notesArray = this.model.get("notes");
+      if(Array.isArray(notesArray)) {
+        var notesCollection = new app.Notes();
+        notesCollection.add(notesArray);
+        this.model.set("notes", notesCollection);
+      }
+ 
+      console.log("this.model.get(notes)", this.model.get("notes"));
+      var newView = new app.NotesView({collection: this.model.get("notes")});
+      layoutView.getRegion("notes").show(newView);
+
     }
 
   },
