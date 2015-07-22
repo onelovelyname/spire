@@ -8,6 +8,9 @@
   },
   "author": "Melanie Gin <melaniegin1@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": "0.12.4"
+  },
   "dependencies": {
     "bluebird": "^2.9.30",
     "body-parser": "^1.13.1",
