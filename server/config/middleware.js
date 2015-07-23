@@ -74,9 +74,11 @@ module.exports = function(app, express) {
     response.status(200).send(request.session);
   });
 
+  router.put('/completions/:id', appController.updateCompletion);
+
   router.get('/habits', appController.fetchHabits);
   router.post('/habits', appController.createInitialHabit);
-  router.put('/habits', appController.updateHabitStatus);
+  //router.put('/habits', appController.updateHabitStatus);
   router.patch('/habits', appController.createNote);
   router.get('/habitCompletion', appController.fetchHabitCompletion);
 

@@ -15,7 +15,7 @@ app.Chart = {
 
       unProcessedData.forEach(function(completion) {
       
-          var day = new Date(completion.start_date);
+          var day = new Date(completion.get("start_date"));
           var dd = day.getDate();
           var mm = day.getMonth() + 1;
           var yyyy = day.getFullYear();
@@ -30,9 +30,11 @@ app.Chart = {
 
           day = yyyy + '-' + mm + '-' + dd;
 
-          processedData[day] = completion.status / data.get("quantity");
+          processedData[day] = completion.get("status") / data.get("quantity");
         
       });
+
+      console.log("processedData: ", processedData);
 
       resolve(processedData);
 

@@ -100,15 +100,15 @@ module.exports = {
 
   },
 
-  saveExistingCompletion: function(habitModelId, completionModelId, status) {
+  saveExistingCompletion: function(completion) {
     console.log("inside of saveExistingCompletion");
 
     return new Promise(function(resolve, reject) {
 
       new HabitCompletion({
-        'habit_id': habitModelId,
-        'id': completionModelId
-      }).save({ status: status }, { method: 'update', patch: true }).then(function(model) {
+        'habit_id': completion.habit_id,
+        'id': completion.id
+      }).save({ status: completion.status }, { method: 'update', patch: true }).then(function(model) {
         console.log("Saved completion to the db from saveExistingCompletion!!! ", model);
         resolve(model);
       })

@@ -50,7 +50,7 @@ app.HabitView = Marionette.ItemView.extend({
 
   createNoteForm: function() {
     console.log("Completed habit for the day (inside createNote)!!");
-    //debugger;
+    debugger;
     layoutView.getRegion('noteForm').show(new app.NoteFormView({ model: this.model }));
   },
   
@@ -76,16 +76,16 @@ app.HabitView = Marionette.ItemView.extend({
 
         var today = Date.parse(habitsView.getDay("today"));
         
-        var completions = model.get("completions");
+        var completionsCollection = model.get("completions");
 
-        for (var i = 0; i < completions.length; i++) {
-          if(completions[i].attributes) {
-            if(Date.parse(completions[i].attributes.start_date) === today) {
-              return completions[i].attributes.status;
+        for (var i = 0; i < completionsCollection.length; i++) {
+          if(completionsCollection.at(i).attributes) {
+            if(Date.parse(completionsCollection.at(i).attributes.start_date) === today) {
+              return completionsCollection.at(i).attributes.status;
             }
           } else {
-            if(Date.parse(completions[i].start_date) === today) {
-              return completions[i].status;
+            if(Date.parse(completionsCollection[i].start_date) === today) {
+              return completionsCollection[i].status;
             }
           }
         }
