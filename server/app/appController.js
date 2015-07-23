@@ -44,9 +44,8 @@ module.exports = {
 
   createInitialHabit: function(request, response) {
     
-    // console.log('createHabits request.body', request.body);
+    console.log('createHabits request.body', request.body);
     // console.log('createHabits request.session', request.session);
-    
     var habit = request.body;
     var user = request.session.passport.user;
     habitController.saveHabit(habit, user).then(function(habit){
