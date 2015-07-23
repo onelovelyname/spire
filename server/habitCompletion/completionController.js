@@ -31,37 +31,6 @@ module.exports = {
 
           }
         });
-<<<<<<< HEAD
-
-    });
-
-  },
-
-  saveCompletions: function (request, habit) {
-
-    var context = this;
-
-
-    var habitCompletionsCollection = request.completions.models;
-    // console.log("habitCompletionsCollection in saveCompletions: ", habitCompletionsCollection);
-    debugger;
-
-    var mappedHabitCompletions = habitCompletionsCollection.map(function(habitCompletionModel) {
-          return context.saveCompletion(habitCompletionModel.status, habit);
-        });
-
-    return new Promise(function(resolve, reject) {
-
-      Promise.all(mappedHabitCompletions).then(function(results){
-        //console.log("results in saveCompletions: ", results);
-        resolve(results);
-      })
-      .catch(function(error) {
-        console.log("error in saveCompletions: ", error);
-        reject(error);
-      });
-=======
->>>>>>> fix/updateHabitCreation
     });
   },
 
