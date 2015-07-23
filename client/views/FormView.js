@@ -47,6 +47,9 @@ app.FormView = Marionette.ItemView.extend({
         }, {
           success: function(completion) {
             console.log("completion created: ", completion);
+            $('#action').val('');
+            $('#quantity').val('');
+            $('#time').val('');
           },
           error: function(error) {
             console.log("Error saving completion to db: ", error);

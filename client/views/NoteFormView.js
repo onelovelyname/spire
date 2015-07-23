@@ -56,6 +56,7 @@ app.NoteFormView = Marionette.ItemView.extend({
       patch: true,
       success: function(model) {
         console.log("Note saved in db!", model);
+        $('#noteText').val('');
       },
       error: function(error) {
         console.log("Note unable to save in db", error);
