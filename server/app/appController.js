@@ -81,12 +81,14 @@ module.exports = {
     var today = Helper.getDay("today");
     var completions = request.body.completions;
     var habitModelId = request.body.id;
+    console.log("request.body: ", request.body);
     completions.forEach(function(completion) {
       if(Date.parse(completion.start_date) === Date.parse(today)) {
         console.log("completion in updateHabitStatus: ", completion);
         completionController.saveExistingCompletion(habitModelId, completion.id, completion.status)
 
         .then(function(results){
+          console.log("completion results: ", results.attributes);
           response.status(200).send(results);
         });
 

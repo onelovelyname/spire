@@ -105,8 +105,11 @@ module.exports = {
 
     return new Promise(function(resolve, reject) {
 
-      new HabitCompletion({habit_id: habitModelId, id: completionModelId}).save({status: status}, {method: 'update', patch: true}).then(function(model) {
-        console.log("Saved completion to the db from saveExistingCompletion!!!");
+      new HabitCompletion({
+        'habit_id': habitModelId,
+        'id': completionModelId
+      }).save({ status: status }, { method: 'update', patch: true }).then(function(model) {
+        console.log("Saved completion to the db from saveExistingCompletion!!! ", model);
         resolve(model);
       })
       .catch(function(error) {
