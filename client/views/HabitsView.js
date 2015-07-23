@@ -15,9 +15,11 @@ app.HabitsView = Marionette.CompositeView.extend({
   childViewContainer: "tbody",
 
   childEvents: {
+
     render: function() {
-      //console.log('A childView has been rendered!');
+
     }
+
   },
 
   initialize: function() {
@@ -25,25 +27,6 @@ app.HabitsView = Marionette.CompositeView.extend({
   },
 
   onBeforeRender: function() {
-
-    // this.collection.fetch({
-    //   success: function(collection) {
-
-    //     collection.forEach(function(habit){
-    //       var habitCompletionsCollection = new app.HabitCompletions(habit.get("completions"));
-    //       var notesCollection = new app.Notes(habit.get("notes"));
-    //       habit.set("completions", habitCompletionsCollection);
-    //       habit.set("notes", notesCollection);
-
-    //     });
-    //     debugger;
-
-    //     console.log("collection fetched!", collection);
-    //   },
-    //   error: function(error) {
-    //     console.error("There was an error fetching your habits: ", error);
-    //   }
-    // });
 
   },
 

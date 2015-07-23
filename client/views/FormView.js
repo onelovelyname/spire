@@ -19,20 +19,13 @@ app.FormView = Marionette.ItemView.extend({
   },
 
   handleSubmit: function (event) {
-    // get input from form
+
     event.preventDefault();
     var habitAction = this.$('#action').val();
     var habitQuantity = this.$('#quantity').val();
     var habitTime = this.$('#time').val();
 
-    // create new HabitCompletions Collection to save as a property of Habit Model below
-
     var habitCompletionsCollection = new app.HabitCompletions();
-    habitCompletionsCollection.add({
-      start_date: habitsView.getDay("today"),
-      end_date: habitsView.getDay("tomorrow"),
-      status: 0 / Number(habitQuantity)
-    });
 
     var notesCollection = new app.Notes();
 
@@ -46,6 +39,19 @@ app.FormView = Marionette.ItemView.extend({
     }, {
       success: function (habit) {
         console.log("habit created: ", habit);
+        habit.get("completions").create({
+          start_date: habitsView.getDay("today"),
+          end_date: habitsView.getDay("tomorrow"),
+          status: 0 / Number(habitQuantity),
+          habit_id: habit.id
+        }, {
+          success: function(completion) {
+            console.log("completion created: ", completion);
+          },
+          error: function(error) {
+            console.log("Error saving completion to db: ", error);
+          }
+        });
       },
       error: function (error) {
         console.error("error", error);
@@ -54,8 +60,6 @@ app.FormView = Marionette.ItemView.extend({
   }
 
 });
-
-//app.getRegion("formRegion").show(new app.FormView());
 
 //////////////////////////////////////////////////////////
 ////////////    Backbone Implementation     //////////////
