@@ -12,7 +12,7 @@ module.exports = {
   },
 
   createRecurringHabitCompletion: function() {
-    // first, fetch habits 
+
     habitController.getHabits().then(function(habits){
 
       var mappedHabits = habits.map(function(habit){
@@ -48,21 +48,23 @@ module.exports = {
 
   createInitialHabit: function(request, response) {
     
-    // console.log('createHabits request.body', request.body);
-    // console.log('createHabits request.session', request.session);
-    
+    console.log('createHabits request.body', request.body);
+
     var habit = request.body;
     var user = request.session.passport.user;
+
     habitController.saveHabit(habit, user).then(function(habit){
       console.log("habit in createInitialHabit: ", habit);
-      completionController.saveCompletions(request.body, habit).then(function(habitCompletion){
-        console.log("saved habit and habitCompletion to db!!", habitCompletion);
-        response.status(200).send(habitCompletion);
-      })
-      .catch(function(error){
-        console.log("Did not save habit or habitCompletion to db, check for errors: ", error);
-      });
+      response.status(200).send(habit);
     });
+
+  },
+
+  createCompletion: function(request, response) {
+    completionController.saveCompletion(request.body).then(function(completion){
+      response.status(200).send(completion);
+    });
+
   },
 
   fetchHabitCompletion: function(request, response) {
@@ -85,9 +87,7 @@ module.exports = {
     console.log("request.body in updateHabitStatus: ", request.body);
     
     completionController.saveExistingCompletion(request.body)
-//    completionController.saveExistingCompletion(habitModelId, completion.id, completion.status)
     .then(function(results){
-      console.log("completion results: ", results.attributes);
       response.status(200).send(results);
     });
   }

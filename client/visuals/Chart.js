@@ -44,7 +44,6 @@ app.Chart = {
 
   createChart: function(processedData, selection) {
 
-      //var width = $(window).width() || 960,
       var cellSize = 15; // cell size
       var width = cellSize * 32,
         height = (width * 0.25);

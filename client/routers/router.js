@@ -19,7 +19,6 @@ app.Router = Backbone.Router.extend({
   home: function(arg) {
 
     layoutView.getRegion('form').show(new app.FormView());
-    //layoutView.getRegion('main').show(habitsView);
 
     habitsView.collection.fetch({
 

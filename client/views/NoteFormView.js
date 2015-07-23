@@ -10,13 +10,8 @@ app.NoteFormView = Marionette.ItemView.extend({
     "submit": "handleSubmit"
   },
 
-  // handleSubmit: function() {
-  //   console.log("note submitted!");
-  // }
-
   addNote: function(model, noteText, today) {
 
-    debugger;
     var notes = model.get('notes');
     var newNote = {
       text: noteText,
@@ -42,13 +37,12 @@ app.NoteFormView = Marionette.ItemView.extend({
       notes.add(newNote);
     }
 
-    debugger;
     return notes;
 
   },
 
   handleSubmit: function (event) {
-    // get input from form
+
     event.preventDefault();
     
     var noteText = this.$('#noteText').val();

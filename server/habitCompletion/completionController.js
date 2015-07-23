@@ -4,55 +4,34 @@ var Helper = require('../config/helpers.js');
 
 module.exports = {
 
-  saveCompletion: function(habitStatus, habitModel) {
+  saveCompletion: function(completion) {
 
+    console.log("completion in saveCompletion: ", completion);
     return new Promise(function(resolve, reject) {
 
-      new HabitCompletion({'habit_id': habitModel.id, 'start_date': Helper.getDay("today")})
+      new HabitCompletion({'habit_id': completion.habit_id, 'start_date': Helper.getDay("today")})
         .fetch().then(function(found){
 
           if (!found) {
 
             new HabitCompletion({
-              'habit_id': habitModel.id,
+              'habit_id': completion.habit_id,
               'start_date': Helper.getDay("today"),
               'end_date': Helper.getDay("tomorrow"),
-              'status': habitStatus
+              'status': completion.status
             }).save({}, {method: 'insert'})
-
             .then(function(completion) {
               console.log('completion in saveCompletion', completion);
               resolve(completion);
             })
-
-            .catch(function(error) {
-              console.log("error in saveCompletion: ", error);
-              reject(error);
-            });
-
-          } else {
-
-
-            new HabitCompletion({
-              'id': found.id,
-              'habit_id': habitModel.id,
-              'start_date': Helper.getDay("today"),
-              'end_date': Helper.getDay("tomorrow"),
-            }).save({'status': habitStatus}, {patch: true, method: 'update'})
-
-            .then(function(completion) {
-              console.log('completion in saveCompletion', completion);
-              resolve(completion);
-            })
-
             .catch(function(error) {
               console.log("error in saveCompletion: ", error);
               reject(error);
             });
 
           }
-
         });
+<<<<<<< HEAD
 
     });
 
@@ -81,6 +60,8 @@ module.exports = {
         console.log("error in saveCompletions: ", error);
         reject(error);
       });
+=======
+>>>>>>> fix/updateHabitCreation
     });
   },
 

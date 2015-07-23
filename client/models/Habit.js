@@ -22,7 +22,7 @@ app.Habit = Backbone.Model.extend({
       if(Date.parse(completion.get('start_date')) === today) {
 
         completion.set('status', completion.get('status') + 1);
-        
+
         completion.save({}, {
           success: function(completion) {
             console.log("completion saved successfully!", completion);

@@ -5,6 +5,8 @@ var GitHubStrategy = require('passport-github2').Strategy;
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var UserController = require('../user/UserController.js');
+var CompletionController = require('../habitCompletion/completionController.js');
+
 
 var GITHUB_CLIENT_ID = '8482186f19648d881478';
 var GITHUB_CLIENT_SECRET = 'ed4ba6d32892d75b86486f38d03ec56dc9157005';
@@ -64,8 +66,6 @@ module.exports = function(app, express) {
       .catch(function(error) {
         console.dir(error);
       });
-      // check if User is already saved in db
-        // if not yet saved, add User to db with github id, name, and a Spire id
       response.redirect('/#home');
 
     });
@@ -78,8 +78,7 @@ module.exports = function(app, express) {
 
   router.get('/habits', appController.fetchHabits);
   router.post('/habits', appController.createInitialHabit);
-
-  //router.put('/habits', appController.updateHabitStatus);
+  router.post('/completions', appController.createCompletion);
   router.patch('/habits', appController.createNote);
   router.get('/habitCompletion', appController.fetchHabitCompletion);
 
