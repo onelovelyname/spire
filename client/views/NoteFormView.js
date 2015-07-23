@@ -14,12 +14,14 @@ app.NoteFormView = Marionette.ItemView.extend({
   //   console.log("note submitted!");
   // }
 
-  addNote: function(notes, noteText, today, modelId) {
+  addNote: function(model, noteText, today) {
 
+    debugger;
+    var notes = model.get('notes');
     var newNote = {
       text: noteText,
       start_date: today,
-      habit_id: modelId
+      habit_id: model.get('id')
     };
 
     var found = false;
@@ -27,19 +29,20 @@ app.NoteFormView = Marionette.ItemView.extend({
     if (notes.length > 0) {
       
       notes.forEach(function(note) {
-        if (note.start_date === today && note.habit_id === modelId) {
+        if (note.get('start_date') === today && note.get('habit_id') === model.get('id')) {
           found = true;
         }
       });
       
       if (!found) {
-        notes.push(newNote);
+        notes.add(newNote);
       }
 
     } else {
-      notes.push(newNote);
+      notes.add(newNote);
     }
 
+    debugger;
     return notes;
 
   },
@@ -48,14 +51,11 @@ app.NoteFormView = Marionette.ItemView.extend({
     // get input from form
     event.preventDefault();
     
-    //debugger;
-    var notes = this.model.get("notes");
     var noteText = this.$('#noteText').val();
     var today = Date.parse(habitsView.getDay("today"));
-    var modelId = this.model.get("id");
 
-    var newNotes = this.addNote(notes, noteText, today, modelId);
-    //var NotesCollection = new app.Notes();
+    var newNotes = this.addNote(this.model, noteText, today);
+    
     this.model.set("notes", newNotes);
 
     this.model.save({"notes": newNotes}, {

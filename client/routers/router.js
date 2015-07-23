@@ -19,7 +19,22 @@ app.Router = Backbone.Router.extend({
   home: function(arg) {
 
     layoutView.getRegion('form').show(new app.FormView());
-    layoutView.getRegion('main').show(habitsView);
+    //layoutView.getRegion('main').show(habitsView);
+
+    habitsView.collection.fetch({
+
+      success: function(collection) {
+
+        collection.attachCollectionstoHabit(collection).then(function() {
+          layoutView.getRegion('main').show(habitsView);
+        });
+        
+      },
+      error: function(error) {
+        console.error("There was an error fetching your habits");
+      }
+    });
+
     layoutView.getRegion('header').show(new app.HeaderView({
       attributes: {
         name: arg.passport.user.name
@@ -27,6 +42,7 @@ app.Router = Backbone.Router.extend({
     }));
 
   },
+
 
   execute: function(callback, args, name) {
    

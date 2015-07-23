@@ -34,16 +34,18 @@ app.FormView = Marionette.ItemView.extend({
       status: 0 / Number(habitQuantity)
     });
 
+    var notesCollection = new app.Notes();
+
     // create new Habit model inside of HabitsCollection
 
     habitsCollection.create({
       action: habitAction,
       quantity: Number(habitQuantity),
-      completions: habitCompletionsCollection
+      completions: habitCompletionsCollection,
+      notes: notesCollection
     }, {
       success: function (habit) {
         console.log("habit created: ", habit);
-        debugger;
       },
       error: function (error) {
         console.error("error", error);

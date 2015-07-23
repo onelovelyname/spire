@@ -81,29 +81,14 @@ module.exports = {
     });
   },
 
-  updateHabitStatus: function(request, response) {
-    console.log("request.body in updateHabitStatus:", request.body);
-    var today = Helper.getDay("today");
-    var completions = request.body.completions;
-    console.log("completions in updateHabitStatus:", completions);
-    var habitModelId = request.body.id;
-    completions.forEach(function(completion) {
-      if(Date.parse(completion.start_date) === Date.parse(today)) {
-        console.log("completion in updateHabitStatus: ", completion);
-        console.log("habitModelId: ", habitModelId);
-        console.log("completionId: ", completion.id);
-        console.log("completionStatus: ", completion.status);
-
-        completionController.saveExistingCompletion(habitModelId, completion.id, completion.status)
-        .then(function(results){
-          console.log("results: ", results);
-          response.status(200).send(request.body);
-        })
-        .catch(function(error) {
-          console.log("error logged in updateHabitStatus: ", error);
-        });
-
-      }
+  updateCompletion: function(request, response) {
+    console.log("request.body in updateHabitStatus: ", request.body);
+    
+    completionController.saveExistingCompletion(request.body)
+//    completionController.saveExistingCompletion(habitModelId, completion.id, completion.status)
+    .then(function(results){
+      console.log("completion results: ", results.attributes);
+      response.status(200).send(results);
     });
   }
 };

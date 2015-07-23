@@ -21,19 +21,29 @@ app.HabitsView = Marionette.CompositeView.extend({
   },
 
   initialize: function() {
-    //$('#view-habits').append(this.render().el);
+
   },
 
   onBeforeRender: function() {
 
-    this.collection.fetch({
-      success: function(collection) {
-        console.log("habits from db: ", collection);
-      },
-      error: function(error) {
-        console.error("There was an error fetching your habits: ", error);
-      }
-    });
+    // this.collection.fetch({
+    //   success: function(collection) {
+
+    //     collection.forEach(function(habit){
+    //       var habitCompletionsCollection = new app.HabitCompletions(habit.get("completions"));
+    //       var notesCollection = new app.Notes(habit.get("notes"));
+    //       habit.set("completions", habitCompletionsCollection);
+    //       habit.set("notes", notesCollection);
+
+    //     });
+    //     debugger;
+
+    //     console.log("collection fetched!", collection);
+    //   },
+    //   error: function(error) {
+    //     console.error("There was an error fetching your habits: ", error);
+    //   }
+    // });
 
   },
 
