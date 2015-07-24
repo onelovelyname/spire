@@ -35,6 +35,37 @@ module.exports = {
   },
 
 
+  saveRecurringCompletion: function(habit) {
+
+    console.log("habit in saveRecurringCompletion:", habit);
+    return new Promise(function(resolve, reject) {
+
+      new HabitCompletion({'habit_id': habit.id, 'start_date': Helper.getDay("today")})
+        .fetch().then(function(found){
+
+          if (!found) {
+
+            new HabitCompletion({
+              'habit_id': habit.id,
+              'start_date': Helper.getDay("today"),
+              'end_date': Helper.getDay("tomorrow"),
+              'status': 0
+            }).save({}, {method: 'insert'})
+            .then(function(completion) {
+              console.log('completion in saveCompletion', completion);
+              resolve(completion);
+            })
+            .catch(function(error) {
+              console.log("error in saveCompletion: ", error);
+              reject(error);
+            });
+
+          }
+        });
+    });
+  },
+
+
   getHabitCompletion: function(query) {
 
     return new Promise(function(resolve, reject) {

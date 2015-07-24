@@ -17,7 +17,7 @@ module.exports = {
 
       var mappedHabits = habits.map(function(habit){
         console.log("habit: ", habit.attributes);
-        return completionController.saveCompletion(0, habit.attributes);
+        return completionController.saveRecurringCompletion(habit);
       });
 
       Promise.all(mappedHabits).then(function(results){
