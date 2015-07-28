@@ -25,6 +25,7 @@ app.HabitView = Marionette.ItemView.extend({
 
     "click button": function(event) {
       this.model.updateStatus(event);
+      console.log("button click heard and updateStatus called");
     },
 
     "click .habitAction": function(event) {

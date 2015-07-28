@@ -25,6 +25,7 @@ app.Router = Backbone.Router.extend({
       success: function(collection) {
 
         collection.attachCollectionstoHabit(collection).then(function() {
+          console.log("collection in home: ", collection);
           layoutView.getRegion('main').show(habitsView);
         });
         
