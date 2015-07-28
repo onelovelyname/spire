@@ -74,16 +74,25 @@ svg {
   height: 100px;
 }*/
 
-h3.greeting {
+ul.greeting {
+  margin: 0px;
+  padding: 0px;
+  float: right;
+}
+
+li.greeting {
   display: inline-block;
   vertical-align: middle;
-  float: right;
   margin: 0px auto;
+  padding: 0 10px;
+
 }
 
 img.greeting {
   display: inline-block;
   vertical-align: middle;
+  float: left;
+
 }
 
 .rgb-color .q0{fill:rgb(165,0,38)}

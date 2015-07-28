@@ -72,7 +72,11 @@
   </script>
 
   <script id="headerTemplate" type="text/x-handlebars-template">
-    <h1>Header Template</h1>
+    <img src='../assets/spire_logo.png' class='greeting'></img>
+    <ul class='greeting'>
+      <li class='greeting'><h3>Welcome, {{ name }}!</h3></li>
+      <li class='greeting' onclick="location.href='api/logout'"><h3>Logout</h3></li>
+    </ul>
   </script>
 
   <script id="notesTemplate" type="text/x-handlebars-template">

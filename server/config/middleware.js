@@ -70,6 +70,12 @@ module.exports = function(app, express) {
 
     });
 
+  router.get('/logout', function(request, response) {
+    request.logout();
+    console.log("request.passport.user after logout: ", request.passport);
+    response.redirect("/");
+  });
+
   router.get('/auth/user', function(request, response) {
     response.status(200).send(request.session);
   });
