@@ -4,7 +4,7 @@ var passport = require('passport');
 var GitHubStrategy = require('passport-github2').Strategy;
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-var UserController = require('../user/UserController.js');
+var UserController = require('../user/userController.js');
 var CompletionController = require('../habitCompletion/completionController.js');
 
 
