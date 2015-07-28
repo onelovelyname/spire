@@ -73,6 +73,7 @@ app.HabitView = Marionette.ItemView.extend({
       modelId: this.model.get('id'),
 
       calculateStatus: function (status) {
+        console.log("status: ", status);
         var percent = status / this.quantity;
         if (status === undefined) {
           return "0%";

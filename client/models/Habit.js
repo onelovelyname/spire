@@ -16,12 +16,15 @@ app.Habit = Backbone.Model.extend({
 
   updateCompletions: function (model, quantity, today) {
 
+    console.log("model in updateCompletions: ", model);
     var completions = model.get("completions");
     completions.forEach(function(completion, index, completions){
 
       if(Date.parse(completion.get('start_date')) === today) {
 
         completion.set('status', completion.get('status') + 1);
+
+        console.log("completion in updateCompletions: ", completion);
 
         completion.save({}, {
           success: function(completion) {
@@ -48,15 +51,11 @@ app.Habit = Backbone.Model.extend({
 
     console.log("inside of updateStatus");
 
-
-    //var completions = this.get("completions");
     var model = this;
     var quantity = this.get("quantity");
     var today = Date.parse(habitsView.getDay("today"));
 
     this.updateCompletions(model, quantity, today);
-
-    //_.extend(this.get("completions"), Backbone.Events);
 
     this.get("completions").trigger("change:status", this.get("completions"));
     //this.get("completions").trigger("change:status", this.get('completions'));
