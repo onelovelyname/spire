@@ -7,10 +7,6 @@ var session = require('express-session');
 var UserController = require('../user/userController.js');
 var CompletionController = require('../habitCompletion/completionController.js');
 
-
-var GITHUB_CLIENT_ID = '8482186f19648d881478';
-var GITHUB_CLIENT_SECRET = 'ed4ba6d32892d75b86486f38d03ec56dc9157005';
-
 passport.serializeUser(function(user, done) {
 
   var sessionUser = {
@@ -28,9 +24,9 @@ passport.deserializeUser(function(obj, done) {
 });
 
 passport.use(new GitHubStrategy({
-    clientID: GITHUB_CLIENT_ID,
-    clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: "http://127.0.0.1:3000/api/auth/github/callback"
+    clientID: process.env.GITHUB_CLIENT_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    callbackURL: "https://spire-app.herokuapp.com/api/auth/github/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     return done(null, profile);
