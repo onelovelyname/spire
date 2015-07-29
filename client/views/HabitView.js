@@ -95,6 +95,12 @@ app.HabitView = Marionette.ItemView.extend({
 
         console.log("completionsCollection in getStatusFromModel: ", completionsCollection);
 
+        var testDate = Date.parse(completionsCollection.at(0).attributes.start_date);
+        console.log("parsed completionsCollection.at(i).attributes.start_date in getStatusFromModel: ", testDate);
+
+        console.log("today: ", today);
+        console.log("today === testDate: ", today === testDate);
+
         for (var i = 0; i < completionsCollection.length; i++) {
           if(completionsCollection.at(i).attributes) {
             if(Date.parse(completionsCollection.at(i).attributes.start_date) === today) {
