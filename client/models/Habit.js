@@ -17,17 +17,8 @@ app.Habit = Backbone.Model.extend({
   updateCompletions: function (model, quantity, today) {
 
     console.log("model in updateCompletions: ", model);
-    
     var completions = model.get("completions");
-
     completions.forEach(function(completion, index, completions){
-
-      console.log("today in updateCompletions: ", today);
-      
-      var start = completion.get('start_date');
-      console.log("completion.get('start_date'): ", start);
-
-      console.log("today === start", today === start);
 
       if(Date.parse(completion.get('start_date')) === today) {
 
