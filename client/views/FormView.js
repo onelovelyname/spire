@@ -39,6 +39,9 @@ app.FormView = Marionette.ItemView.extend({
     }, {
       success: function (habit) {
         console.log("habit created: ", habit);
+        console.log("completion created: ", habitsView.getDay('today'));
+        console.log("completion created: ", habitsView.getDay('tomorrow'));
+
         habit.get("completions").create({
           start_date: habitsView.getDay("today"),
           end_date: habitsView.getDay("tomorrow"),

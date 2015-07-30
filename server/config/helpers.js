@@ -22,7 +22,7 @@ module.exports = {
       mm='0'+mm;
     }
 
-    day = yyyy + '-' + mm + '-' + dd + ' 00:00:00+07';
+    day = yyyy + '-' + mm + '-' + dd + ' 00:00:00-07';
     console.log("day in getDay: ", day);
 
     return day;

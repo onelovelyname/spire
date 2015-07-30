@@ -52,10 +52,34 @@ app.HabitsView = Marionette.CompositeView.extend({
       mm='0'+mm;
     }
 
-    day = yyyy + '-' + mm + '-' + dd + ' 00:00:00 GMT-0700';
-    //day = yyyy + '-' + mm + '-' + dd + ' 00:00:00+07';
+    day = yyyy + '-' + mm + '-' + dd + ' 00:00:00-07';
+
+    //day = yyyy + '-' + mm + '-' + dd + ' 00:00:00 GMT-0700';
+
     console.log("day in habitsView: ", day);
 
+    return day;
+
+  },
+
+  getToday: function() {
+ 
+    var day = new Date();
+
+    var dd = day.getDate();
+    var mm = day.getMonth() + 1;
+    var yyyy = day.getFullYear();
+
+    if(dd<10) {
+      dd ='0'+ dd;
+    }
+
+    if(mm<10) {
+      mm='0'+mm;
+    }
+
+    day = yyyy + '-' + mm + '-' + dd + ' GMT-0700';
+    
     return day;
 
   }
