@@ -52,7 +52,7 @@ app.HabitsView = Marionette.CompositeView.extend({
       mm='0'+mm;
     }
 
-    day = mm + '/' + dd + '/' + yyyy;
+    day = mm + '/' + dd + '/' + yyyy + ' GMT';
 
     return day;
 
