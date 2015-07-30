@@ -1,4 +1,6 @@
 var Habit = require('./habitModel');
+var Helper = require('../config/helpers.js');
+
 module.exports = {
   
   getHabits: function(user) {
@@ -55,7 +57,7 @@ module.exports = {
           'user_github_id': user.github_id,
           'action': habit.action,
           'quantity': habit.quantity,
-          'timestamp': 'today',
+          'timestamp': Helper.getDay('today'),
         }).save({}, {method: 'insert'})
           .then(function(habit){
             console.log("Habit saved!", habit);
