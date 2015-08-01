@@ -33,14 +33,12 @@ app.HabitsView = Marionette.CompositeView.extend({
   getDay: function(date) {
  
     var day = new Date();
-    var dd = 0;
 
-    if (date === "today") {
-      dd = day.getDate();
-    } else if (date === "tomorrow") {
-      dd = day.getDate() + 1;
+    if (date === "tomorrow") {
+      day.setDate(day.getDate() + 1);
     }
 
+    var dd = day.getDate();
     var mm = day.getMonth() + 1;
     var yyyy = day.getFullYear();
 
@@ -52,7 +50,8 @@ app.HabitsView = Marionette.CompositeView.extend({
       mm='0'+mm;
     }
 
-    day = mm + '/' + dd + '/' + yyyy;
+    //day = mm + '/' + dd + '/' + yyyy;
+    day = yyyy + '-' + mm + '-' + dd + "GMT";
 
     return day;
 
