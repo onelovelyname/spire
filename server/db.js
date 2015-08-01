@@ -1,4 +1,5 @@
 var pg = require('pg');
+var moment = require('moment');
 
 var knex = require('knex')({
   client: 'pg',
@@ -10,6 +11,13 @@ var knex = require('knex')({
     database: "spire_db",
     charset: 'utf8'
   }
+});
+
+var types = pg.types;
+
+var DATE_OID = 1082;
+types.setTypeParser(DATE_OID, function(value) {
+  return value === null ? null : moment.utc(value).format("YYYY-MM-DD");
 });
 
 var db = require('bookshelf')(knex);

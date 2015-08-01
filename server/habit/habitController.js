@@ -13,6 +13,7 @@ module.exports = {
         .fetchAll({ withRelated: ['completions', 'notes'] })
         .then(function(habits) {
           habits.forEach(function(habit) {
+            console.log("habit.related(completions):", habit.related('completions').models);
             var completions = habit.related('completions').models;
             var notes = habit.related('notes').models;
             console.log("habit in getHabits:", habit);
