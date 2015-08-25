@@ -1,5 +1,13 @@
-html {
-  height:100%;
+html { 
+  height: 100%;
+}
+
+html.login-bg {
+  background: url(../assets/background_login.jpeg) no-repeat center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 body {
@@ -51,6 +59,10 @@ h2 {
 
 #note-form-region {
   margin: 20px;
+}
+
+.login {
+  text-align: center;
 }
 
 svg {

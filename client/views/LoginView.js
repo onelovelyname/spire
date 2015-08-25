@@ -2,13 +2,15 @@ var app = app || {};
 
 app.LoginView = Marionette.ItemView.extend({
 
-  tagName: "form",
+  onBeforeShow: function() {
+    $('html').addClass("login-bg");
+  },
+
+  tagName: "div",
+
+  className: "login",
 
   template: Handlebars.compile($('#loginTemplate').html()),
-
-  events: {
-    
-  }
 
 });
 
