@@ -2,12 +2,7 @@ var app = app || {};
 
 app.HistoryView = Marionette.ItemView.extend({
 
-  //template: Handlebars.compile($('#historyTemplate').html())
-
-  // template: _.template("<h2>History of: <%= action %></h2><table><%= createList() %> </table>"),
-
   template: _.template("<h2>History of: <%= action %></h2>"),
-
 
   completionEvents: {
     "change:status": "render updateChart"

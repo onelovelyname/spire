@@ -6,14 +6,12 @@ var app = app || {};
 
 app.HabitView = Marionette.ItemView.extend({
 
-  //template: Handlebars.compile($('#habitTemplate').html()),
   template: _.template("<td><button id='<%= modelId %>' class='button-success pure-button'>Complete</button></td><td data-id='<%= modelId %>' class='habitAction'><%= action %></td><td><%= quantity %></td><td><%= calculateStatus(getStatusFromModel()) %></td>"),
 
   tagName: 'tr',
 
   completionEvents: {
     "change:status": "render",
-    //"change:status": "test",
     "complete": "createNoteForm"
   },
 
@@ -49,7 +47,6 @@ app.HabitView = Marionette.ItemView.extend({
 
   initialize: function() {
 
-    //_.extend(this.model.get("completions"), Backbone.Events);
     this.bindEntityEvents(this.model.get("completions"), this.completionEvents);
     
   },

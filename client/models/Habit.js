@@ -1,15 +1,10 @@
 var app = app || {};
 
 app.Habit = Backbone.Model.extend({
-  
-  // initialize: function() {
-  //   this.completion = new HabitCompletion();
-  // },
 
   defaults: {
     action: "",
     quantity: 0
-    //time: "days"
   },
 
   url: "api/habits",
@@ -65,43 +60,6 @@ app.Habit = Backbone.Model.extend({
     this.updateCompletions(model, quantity, today);
 
     this.get("completions").trigger("change:status", this.get("completions"));
-    //this.get("completions").trigger("change:status", this.get('completions'));
-    //this.trigger("change", this);
-
-    // completions.forEach(function(completion) {
-    //   if(Date.parse(completion.get('start_date')) === today) {
-    //     if(completion.get('status') === quantity) {
-    //       completions.trigger("complete", completions);
-    //     }
-    //   }
-    // });
-
-    //var model = this;
-
-
-    // this.save({}, {
-    //   success: function(model) {
-    //     console.log("Status of habit updated in db! ", model);
-
-
-    //     // model.completions.start_date
-    //   },
-    //   error: function(error) {
-    //     console.log("Status of habit unable to update in db: ", error);
-    //   }
-    // });
-
-    //Radio.execute("day", "event:complete");
-    //Day Model
-    // Radio.handle("day", "event:complete", functionName);
-    // completions.forEach(function(completion) {
-    //   if(Date.parse(completion.start_date) === today) {
-    //     if(completion.status === quantity) {
-    //       completions.trigger("complete", model);
-    //     }
-    //   }
-    // });
-
 
   }
 
