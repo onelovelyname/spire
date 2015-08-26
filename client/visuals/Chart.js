@@ -17,8 +17,8 @@ app.Chart = {
       
           var day = new Date(completion.get("start_date"));
           var dd = day.getUTCDate();
-          var mm = day.getMonth() + 1;
-          var yyyy = day.getFullYear();
+          var mm = day.getUTCMonth() + 1;
+          var yyyy = day.getUTCFullYear();
 
           if(dd<10) {
             dd ='0'+ dd;
