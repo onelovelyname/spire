@@ -20,6 +20,9 @@ app.Router = Backbone.Router.extend({
 
     layoutView.getRegion('form').show(new app.FormView());
 
+    $('html').addClass("home-bg");
+    $('#header-region').addClass("header-bg");
+
     habitsView.collection.fetch({
 
       success: function(collection) {

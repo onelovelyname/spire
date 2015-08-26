@@ -10,6 +10,10 @@ html.login-bg {
   background-size: cover;
 }
 
+html.home-bg {
+  background-color: rgb(242,245,246);
+}
+
 body {
   font-family: 'Lato', sans-serif;
   font-weight: 400;
@@ -24,22 +28,25 @@ h2 {
   color: rgb(1, 217, 169);
   font-family: 'Lato', sans-serif;
   font-weight: 300;
+  margin: 0;
 }
 
 #app-region {
   height: 100%;
 }
 
+/*.app-bg {
+  background-color: rgb(242,245,246);
+}*/
+
 #header-region {
   padding: 10px;
   height: 50px;
 }
 
-/*#content-region {
-  width: 100%; 
-  height: 100%;
-  background-color: rgb(242, 245, 246);
-}*/
+.header-bg {
+  background-color: rgb(255, 255, 255);
+}
 
 #form-region {
   margin: 20px;
@@ -55,13 +62,16 @@ h2 {
   vertical-align: top;
   display: inline-block;
   margin: 20px;
+  background-color: rgb(255, 255, 255);
 }
 
 #history-region {
+  padding: 20px;
 }
 
 
 #notes-region {
+  padding: 20px;
 }
 
 #note-form-region {
