@@ -20,8 +20,8 @@ app.Router = Backbone.Router.extend({
 
     layoutView.getRegion('form').show(new app.FormView());
 
-    $('html').addClass("home-bg");
-    $('#header-region').addClass("header-bg");
+    $('html').addClass("home-ui");
+    $('#header-region').addClass("header-ui");
 
     habitsView.collection.fetch({
 
@@ -30,6 +30,7 @@ app.Router = Backbone.Router.extend({
         collection.attachCollectionstoHabit(collection).then(function() {
           console.log("collection in home: ", collection);
           layoutView.getRegion('main').show(habitsView);
+
         });
         
       },

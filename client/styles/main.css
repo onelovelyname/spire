@@ -2,7 +2,7 @@ html {
   height: 100%;
 }
 
-html.login-bg {
+html.login-ui {
   background: url(../assets/background_login.jpeg) no-repeat center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -10,13 +10,13 @@ html.login-bg {
   background-size: cover;
 }
 
-html.home-bg {
+html.home-ui {
   background-color: rgb(242,245,246);
 }
 
 body {
   font-family: 'Lato', sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   shape-rendering: crispEdges;
   height: 100%;
   margin: 0px;
@@ -44,7 +44,7 @@ h2 {
   height: 50px;
 }
 
-.header-bg {
+.header-ui {
   background-color: rgb(255, 255, 255);
 }
 
@@ -56,6 +56,7 @@ h2 {
   margin: 20px;
   display: inline-block;
   vertical-align: top;
+  width: 30%;
 }
 
 #aside-region {
@@ -63,16 +64,24 @@ h2 {
   display: inline-block;
   margin: 20px;
   background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  width: 60%;
 }
 
 #history-region {
-  padding: 20px;
 }
 
+.history-home-ui {
+  padding: 20px;
+}
 
 #notes-region {
+}
+
+.notes-home-ui {
   padding: 20px;
 }
+
 
 #note-form-region {
   margin: 20px;
@@ -147,6 +156,10 @@ textarea {
 }
 
 li { cursor: pointer; }
+
+tr {
+  background-color: rgb(255,255,255);
+}
 
 td.habitAction {
   cursor: pointer;

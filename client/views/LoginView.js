@@ -3,7 +3,7 @@ var app = app || {};
 app.LoginView = Marionette.ItemView.extend({
 
   onBeforeShow: function() {
-    $('html').addClass("login-bg");
+    $('html').addClass("login-ui");
   },
 
   tagName: "div",

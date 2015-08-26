@@ -1,7 +1,4 @@
-var app = app || {},
-  width = 1200,
-  height = 150,
-  cellSize = 20;
+var app = app || {};
 
 app.Chart = {
 
@@ -41,10 +38,11 @@ app.Chart = {
   },
 
   createChart: function(processedData, selection) {
-
-      var cellSize = 15; // cell size
-      var width = cellSize * 32,
-        height = (width * 0.25);
+  
+      var width = $('#aside-region').width();
+      console.log("inside of createChart!: ", width);
+      var cellSize = width / 32; // cell size
+      var height = (width * 0.25);
 
       var today = new Date();
       var month = today.getMonth() + 1;

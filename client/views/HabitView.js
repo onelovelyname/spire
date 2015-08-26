@@ -24,31 +24,35 @@ app.HabitView = Marionette.ItemView.extend({
 
     "click .habitAction": function(event) {
 
-
       if (!_.contains(event.target.parentElement.classList, 'highlighted')) {
         $('.highlighted').removeClass('highlighted');
         event.target.parentElement.classList.add('highlighted');
 
-        layoutView.getRegion('history').show(new app.HistoryView({model: this.model}));
-
-        var notesArray = this.model.get("notes");
-        if(Array.isArray(notesArray)) {
-          var notesCollection = new app.Notes();
-          notesCollection.add(notesArray);
-          this.model.set("notes", notesCollection);
-        }
-   
-        var newView = new app.NotesView({collection: this.model.get("notes")});
-        layoutView.getRegion("notes").show(newView);
-        
-      }
-
-      else {
-        event.target.parentElement.classList.remove('highlighted');
+        this.showAside(this.model);
 
       }
 
     }
+
+  },
+
+  showAside: function(model) {
+
+    layoutView.getRegion('history').show(new app.HistoryView({model: model}));
+
+    var notesArray = model.get("notes");
+    if(Array.isArray(notesArray)) {
+      var notesCollection = new app.Notes();
+      notesCollection.add(notesArray);
+      model.set("notes", notesCollection);
+    }
+
+    var newView = new app.NotesView({collection: model.get("notes")});
+    layoutView.getRegion("notes").show(newView);
+
+    $('#history-region').addClass('history-home-ui');
+    $('#notes-region').addClass('notes-home-ui');
+
 
   },
 
