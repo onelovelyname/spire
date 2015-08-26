@@ -132,5 +132,12 @@ textarea {
 }
 
 .highlighted {
-  background-color: rgb(1, 217, 169) 
+  background-color: rgb(1, 217, 169);
+  color: rgb(255, 255, 255);
+}
+
+li { cursor: pointer; }
+
+td.habitAction {
+  cursor: pointer;
 }
