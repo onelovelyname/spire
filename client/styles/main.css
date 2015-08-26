@@ -47,14 +47,21 @@ h2 {
 
 #main-region {
   margin: 20px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+#aside-region {
+  vertical-align: top;
+  display: inline-block;
+  margin: 20px;
 }
 
 #history-region {
-  margin: 20px;
 }
 
+
 #notes-region {
-  margin: 20px;
 }
 
 #note-form-region {
@@ -122,4 +129,8 @@ img.greeting {
 
 textarea {
   resize: none;
+}
+
+.highlighted {
+  background-color: rgb(1, 217, 169) 
 }

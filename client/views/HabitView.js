@@ -15,10 +15,6 @@ app.HabitView = Marionette.ItemView.extend({
     "complete": "createNoteForm"
   },
 
-  test: function() {
-    console.log("Change in status heard in HabitView");
-  },
-
   events: {
 
     "click button": function(event) {
@@ -28,18 +24,29 @@ app.HabitView = Marionette.ItemView.extend({
 
     "click .habitAction": function(event) {
 
-      layoutView.getRegion('history').show(new app.HistoryView({model: this.model}));
 
-      var notesArray = this.model.get("notes");
-      if(Array.isArray(notesArray)) {
-        var notesCollection = new app.Notes();
-        notesCollection.add(notesArray);
-        this.model.set("notes", notesCollection);
+      if (!_.contains(event.target.parentElement.classList, 'highlighted')) {
+        $('.highlighted').removeClass('highlighted');
+        event.target.parentElement.classList.add('highlighted');
+
+        layoutView.getRegion('history').show(new app.HistoryView({model: this.model}));
+
+        var notesArray = this.model.get("notes");
+        if(Array.isArray(notesArray)) {
+          var notesCollection = new app.Notes();
+          notesCollection.add(notesArray);
+          this.model.set("notes", notesCollection);
+        }
+   
+        var newView = new app.NotesView({collection: this.model.get("notes")});
+        layoutView.getRegion("notes").show(newView);
+        
       }
- 
-      console.log("this.model.get(notes)", this.model.get("notes"));
-      var newView = new app.NotesView({collection: this.model.get("notes")});
-      layoutView.getRegion("notes").show(newView);
+
+      else {
+        event.target.parentElement.classList.remove('highlighted');
+
+      }
 
     }
 
@@ -52,7 +59,6 @@ app.HabitView = Marionette.ItemView.extend({
   },
 
   createNoteForm: function() {
-    console.log("Completed habit for the day (inside createNote)!!");
 
     layoutView.getRegion('noteForm').show(new app.NoteFormView({ model: this.model }));
   },

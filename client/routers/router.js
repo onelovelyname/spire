@@ -13,7 +13,7 @@ app.Router = Backbone.Router.extend({
   },
 
   login: function() {
-    layoutView.getRegion('main').show(new app.LoginView());
+    layoutView.getRegion('form').show(new app.LoginView());
   },
 
   home: function(arg) {

@@ -34,8 +34,6 @@ app.Chart = {
         
       });
 
-      console.log("processedData: ", processedData);
-
       resolve(processedData);
 
     });
@@ -163,7 +161,6 @@ app.Chart = {
     });
 
     rects.attr("class", function(d) {
-        console.log("color(processedData[d])", color(processedData[d]));
         return "day " + color(processedData[d]);
       });
 
