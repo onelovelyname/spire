@@ -16,7 +16,7 @@ app.Chart = {
       unProcessedData.forEach(function(completion) {
       
           var day = new Date(completion.get("start_date"));
-          var dd = day.getDate();
+          var dd = day.getUTCDate();
           var mm = day.getMonth() + 1;
           var yyyy = day.getFullYear();
 
@@ -59,7 +59,6 @@ app.Chart = {
       var start = new Date(year, month - 6, 1);
       var monthOffset = start.getMonth();
       var weekOffset = d3.time.weekOfYear(start);
-      debugger;
 
       var percent = d3.format(".1%"),
         format = d3.time.format("%Y-%m-%d");
