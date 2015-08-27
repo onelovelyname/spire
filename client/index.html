@@ -17,11 +17,13 @@
 
     <header id="header-region"></header>
     <section id="content-region">
-      <section id="form-region"></section>
       <section id="main-region"></section>
-      <section id="aside-region">
-        <section id="history-region"></section>
-        <section id="notes-region"></section>
+      <section id="stream-region">
+        <section id="form-region"></section>
+        <section id="aside-region">
+          <section id="history-region"></section>
+          <section id="notes-region"></section>
+        </section>
       </section>
     </section>
       <section id="note-form-region"></section>
@@ -30,13 +32,12 @@
   </script>
 
   <script id="formTemplate" type="text/x-handlebars-template">
-    <h2>Create Habit</h2>
-    <p>I want to build a habit by 
-      <input type='text' id='action' placeholder='Enter action' autofocus/> 
+    <p>I want to create a habit of
+      <input type='text' id='action' placeholder='Enter action' /> 
       <input type='text' id='quantity' placeholder='Enter quantity'/> 
       times per day
+      <button class="pure-button" action='submit'>Submit</button>
     </p>
-    <button class="pure-button pure-button-primary" action='submit'>Submit</button>
   </script>
 
   <script id="noteFormTemplate" type="text/x-handlebars-template">

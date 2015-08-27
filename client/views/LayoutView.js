@@ -6,6 +6,7 @@ app.LayoutView = Marionette.LayoutView.extend({
 
   regions: {
     'header': '#header-region',
+    'content': '#content-region',
     'form': '#form-region',
     'main': '#main-region',
     'history': '#history-region',

@@ -2,7 +2,7 @@ var app = app || {};
 
 app.HistoryView = Marionette.ItemView.extend({
 
-  template: _.template("<h2>History of: <%= action %></h2><div class='chart'></div>"),
+  template: _.template("<h2><%= action %></h2><div class='chart'></div>"),
 
   completionEvents: {
     "change:status": "render updateChart"
