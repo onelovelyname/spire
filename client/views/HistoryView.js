@@ -2,39 +2,17 @@ var app = app || {};
 
 app.HistoryView = Marionette.ItemView.extend({
 
-  template: _.template("<h2>History of: <%= action %></h2>"),
+  template: _.template("<h2>History of: <%= action %></h2><div class='chart'></div>"),
 
   completionEvents: {
     "change:status": "render updateChart"
   },
 
-  showChart: function() {
-    
-    app.Chart.processData(this.model).then(function(processedData) {
-      app.Chart.createChart(processedData, '#history-region');
-    });
-
-  },
-
   initialize: function() {
-    var context = this;
-
-    $(window).on("resize", function() {
-      console.log("resizing heard!");
-      context.showChart();
-    });
 
     _.extend(this.model.get("completions"), Backbone.Events);
     this.bindEntityEvents(this.model.get("completions"), this.completionEvents);
 
-  },
-
-  updateChart: function() {
-    
-    app.Chart.processData(this.model).then(function(processedData){
-      app.Chart.updateChart(processedData, '#history-region');
-    });
-  
   },
 
   onShow: function() {
@@ -42,6 +20,23 @@ app.HistoryView = Marionette.ItemView.extend({
     this.showChart();
 
   },
+  
+  showChart: function() {
+    
+    app.Chart.processData(this.model).then(function(processedData) {
+      app.Chart.createChart(processedData, '.chart');
+    });
+
+  },
+
+  updateChart: function() {
+    
+    app.Chart.processData(this.model).then(function(processedData){
+      app.Chart.updateChart(processedData, '.chart');
+    });
+  
+  },
+
 
   templateHelpers: function () {
 

@@ -40,7 +40,6 @@ app.Chart = {
   createChart: function(processedData, selection) {
   
       var width = $('#aside-region').width();
-      console.log("inside of createChart!: ", width);
       var cellSize = width / 32; // cell size
       var height = (width * 0.25);
 
@@ -93,6 +92,8 @@ app.Chart = {
           .attr("class", "day")
           .attr("width", cellSize)
           .attr("height", cellSize)
+          .attr("rx", 1)
+          .attr("ry", 1)
           .attr("x", function(d) {
             return (d3.time.weekOfYear(d) - weekOffset) * cellSize;
           })

@@ -17,7 +17,6 @@ app.Habits = Backbone.Collection.extend({
           habit.set("notes", notesCollection);
         });
 
-        console.log("finished attaching!");
         resolve();
 
     });

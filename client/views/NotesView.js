@@ -10,8 +10,6 @@ app.NotesView = Marionette.CompositeView.extend({
 
   childEvents: {
     render: function() {
-      console.log('A childView notes has been rendered!');
-      console.log("this.collection", this.collection);
     }
   },
 

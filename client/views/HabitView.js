@@ -10,6 +10,12 @@ app.HabitView = Marionette.ItemView.extend({
 
   tagName: 'tr',
 
+  initialize: function() {
+
+    this.bindEntityEvents(this.model.get("completions"), this.completionEvents);
+    
+  },
+
   completionEvents: {
     "change:status": "render",
     "complete": "createNoteForm"
@@ -56,11 +62,6 @@ app.HabitView = Marionette.ItemView.extend({
 
   },
 
-  initialize: function() {
-
-    this.bindEntityEvents(this.model.get("completions"), this.completionEvents);
-    
-  },
 
   createNoteForm: function() {
 
@@ -80,7 +81,6 @@ app.HabitView = Marionette.ItemView.extend({
       modelId: this.model.get('id'),
 
       calculateStatus: function (status) {
-        console.log("status: ", status);
         var percent = status / this.quantity;
         if (status === undefined) {
           return "0%";
@@ -112,7 +112,6 @@ app.HabitView = Marionette.ItemView.extend({
       }
     };
   }
-
 
 });
 

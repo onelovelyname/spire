@@ -23,7 +23,7 @@ app.HabitsView = Marionette.CompositeView.extend({
   },
 
   initialize: function() {
-
+    this.bindEntityEvents(app, this.appEvents);
   },
 
   onBeforeRender: function() {
@@ -31,11 +31,24 @@ app.HabitsView = Marionette.CompositeView.extend({
   },
 
   onRender: function() {
-    console.log("this.collection:", this.collection);
     var startingView = Object.keys(this.children._views)[0];
     var startingModel = this.children._views[startingView].model;
     this.children._views[startingView].showAside(startingModel);
     this.children._views[startingView].$el.addClass('highlighted');
+  },
+
+  appEvents: {
+    "resize": "resizeAside"
+  },
+
+  resizeAside: function() {
+
+    for (var viewName in this.children._views) {
+      var view = this.children._views[viewName];
+      if (_.contains(view.el.classList, "highlighted")) {
+        view.showAside(view.model);
+      }
+    }
   },
 
   getDay: function(date) {
