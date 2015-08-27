@@ -36,6 +36,13 @@ app.HabitView = Marionette.ItemView.extend({
 
   },
 
+  
+  initialize: function() {
+
+    this.bindEntityEvents(this.model.get("completions"), this.completionEvents);
+    
+  },
+
   showAside: function(model) {
 
     layoutView.getRegion('history').show(new app.HistoryView({model: model}));
@@ -54,12 +61,6 @@ app.HabitView = Marionette.ItemView.extend({
     $('#notes-region').addClass('notes-home-ui');
 
 
-  },
-
-  initialize: function() {
-
-    this.bindEntityEvents(this.model.get("completions"), this.completionEvents);
-    
   },
 
   createNoteForm: function() {

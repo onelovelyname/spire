@@ -14,6 +14,22 @@ app.HabitsView = Marionette.CompositeView.extend({
 
   childViewContainer: "tbody",
 
+  appEvents: {
+    "resize": function() {
+      console.log("resize heard in HabitsView");
+
+      var childViews = this.children._views;
+      for (var viewName in childViews) {
+        if (_.contains(childViews[viewName].el.classList, 'highlighted')) {
+          var view = childViews[viewName];
+          var model = view.model;
+          view.showAside(model);
+        }
+
+      }
+    }
+  },
+
   childEvents: {
 
     render: function() {
@@ -23,6 +39,8 @@ app.HabitsView = Marionette.CompositeView.extend({
   },
 
   initialize: function() {
+
+    this.bindEntityEvents(app, this.appEvents);
 
   },
 
