@@ -40,8 +40,14 @@ h3 {
   font-weight: 300; 
 }
 
+h4 {
+  color: rgb(1, 217, 169);
+  margin: .25em;
+  font-weight: 400; 
+}
+
 p {
-  margin: 5px;
+  margin: .25em;
 }
 
 #app-region {
@@ -107,7 +113,12 @@ p {
 
 
 #note-form-region {
+
+}
+
+.note-form-ui {
   margin: 20px;
+  padding: 20px 0;  
 }
 
 /* LOGIN VIEW */
@@ -200,4 +211,10 @@ tr {
 
 td.habitAction {
   cursor: pointer;
+}
+
+/* NOTES VIEW */
+
+.note-ui {
+  display: inline-block;
 }

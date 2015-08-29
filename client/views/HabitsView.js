@@ -49,11 +49,13 @@ app.HabitsView = Marionette.CompositeView.extend({
   },
 
   onRender: function() {
-    console.log("this.collection:", this.collection);
-    var startingView = Object.keys(this.children._views)[0];
-    var startingModel = this.children._views[startingView].model;
-    this.children._views[startingView].showAside(startingModel);
-    this.children._views[startingView].$el.addClass('highlighted');
+
+    if (this.collection.length > 0) {
+      var startingView = Object.keys(this.children._views)[0];
+      var startingModel = this.children._views[startingView].model;
+      this.children._views[startingView].showAside(startingModel);
+      this.children._views[startingView].$el.addClass('highlighted');
+    }
   },
 
   getDay: function(date) {
