@@ -6,7 +6,6 @@ module.exports = {
   saveNote: function(note) {
 
     var noteData = note.notes[note.notes.length - 1];
-    debugger;
 
     return new Promise(function(resolve, reject) {
 
@@ -18,6 +17,7 @@ module.exports = {
           new Note({
             'habit_id': noteData.habit_id,
             'text': noteData.text,
+            'location': noteData.location,
             'start_date': Helper.getDay("today")
           }).save({}, {method: 'insert'})
           .then(function(note){
