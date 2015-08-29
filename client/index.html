@@ -18,13 +18,15 @@
     <header id="header-region"></header>
     <section id="content-region">
       <section id="main-region"></section>
-      <section id="aside-region">
+      <section id="info-region">
         <section id="form-region"></section>
-        <section id="history-region"></section>
-        <section id="notes-region"></section>
+        <section id="aside-region">
+          <section id="history-region"></section>
+          <section id="notes-region"></section>
+          <section id="note-form-region"></section>
+        </section>
       </section>
     </section>
-      <section id="note-form-region"></section>
     <footer id="footer-region"></footer>    
 
   </script>
@@ -32,7 +34,7 @@
   <script id="formTemplate" type="text/x-handlebars-template">
     <h2>Create Habit</h2>
     <p>I want to build a habit by 
-      <input type='text' id='action' placeholder='Enter action' autofocus/> 
+      <input type='text' id='action' placeholder='Enter action' /> 
       <input type='text' id='quantity' placeholder='Enter quantity'/> 
       times per day
       <button class="pure-button" action='submit'>Submit</button>
@@ -70,7 +72,7 @@
   <script id="loginTemplate" type="text/x-handlebars-template">
     <h1>Welcome to Spire</h1>
     <h2>Quantify your habits in simple dashboards</h2>
-    <input type="button" class="pure-button" onclick="location.href='api/auth/github';" value="Sign in with GitHub"/>
+    <input type="button" class="pure-button login-button" onclick="location.href='api/auth/github';" value="Sign in with GitHub"/>
   </script>
 
   <script id="headerTemplate" type="text/x-handlebars-template">

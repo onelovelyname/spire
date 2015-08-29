@@ -24,16 +24,24 @@ body {
   color: rgb(87,104,122);
 }
 
+h1 {
+  margin: .5em;
+}
+
 h2 {
   color: rgb(1, 217, 169);
   font-family: 'Lato', sans-serif;
   font-weight: 300;
-  margin: 0;
+  margin: .25em;
 }
 
 h3 {
   font-family: 'Lato', sans-serif;
   font-weight: 300; 
+}
+
+p {
+  margin: 5px;
 }
 
 #app-region {
@@ -54,7 +62,14 @@ h3 {
 }
 
 #form-region {
-  margin: 20px;
+
+}
+
+.form-ui {
+  background-color: rgb(255,255,255);
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 5px
 }
 
 #main-region {
@@ -64,13 +79,16 @@ h3 {
   width: 30%;
 }
 
-#aside-region {
+#info-region {
   vertical-align: top;
   display: inline-block;
+  width: 60%;
   margin: 20px;
+}
+
+#aside-region {
   background-color: rgb(255, 255, 255);
   border-radius: 5px;
-  width: 60%;
 }
 
 #history-region {
@@ -92,9 +110,17 @@ h3 {
   margin: 20px;
 }
 
+/* LOGIN VIEW */
+
 .login {
   text-align: center;
 }
+
+.login-button {
+  margin: .5em 0;
+}
+
+/* CHART VIEW */
 
 svg {
   padding: 10px;  
@@ -111,6 +137,21 @@ svg {
   stroke: #000;
   stroke-width: 2px;
 }
+
+.rgb-color .q0{fill:rgb(165,0,38)}
+.rgb-color .q1{fill:rgb(244,109,67)}
+.rgb-color .q2{fill:rgb(254,224,139)}
+.rgb-color .q3{fill:rgb(217,239,139)}
+.rgb-color .q4{fill:rgb(102,189,99)}
+.rgb-color .q5{fill:rgb(0,104,55)}
+
+
+.labelText {
+  font-size: 10px;
+  fill: rgb(87,104,122);
+}
+
+/* HEADER VIEW */
 
 /*header {
   position: relative;
@@ -138,18 +179,7 @@ img.greeting {
 
 }
 
-.rgb-color .q0{fill:rgb(165,0,38)}
-.rgb-color .q1{fill:rgb(244,109,67)}
-.rgb-color .q2{fill:rgb(254,224,139)}
-.rgb-color .q3{fill:rgb(217,239,139)}
-.rgb-color .q4{fill:rgb(102,189,99)}
-.rgb-color .q5{fill:rgb(0,104,55)}
-
-
-.labelText {
-  font-size: 10px;
-  fill: rgb(87,104,122);
-}
+/* HABITS VIEW */
 
 textarea {
   resize: none;

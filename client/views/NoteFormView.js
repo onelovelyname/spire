@@ -42,9 +42,9 @@ app.NoteFormView = Marionette.ItemView.extend({
   },
 
   handleSubmit: function (event) {
-
-    event.preventDefault();
     
+    event.preventDefault();
+
     var noteText = this.$('#noteText').val();
     var today = Date.parse(habitsView.getDay("today"));
 
