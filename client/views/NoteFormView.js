@@ -10,6 +10,10 @@ app.NoteFormView = Marionette.ItemView.extend({
     "submit": "handleSubmit"
   },
 
+  initialize: function() {
+    _.bindAll(this, "saveSuccess", "saveError");
+  },
+
   addNote: function(model, noteText, today) {
 
     var notes = model.get('notes');
@@ -54,15 +58,19 @@ app.NoteFormView = Marionette.ItemView.extend({
 
     this.model.save({"notes": newNotes}, {
       patch: true,
-      success: function(model) {
-        console.log("Note saved in db!", model);
-        $('#noteText').val('');
-      },
-      error: function(error) {
-        console.log("Note unable to save in db", error);
-      }
+      success: this.saveSuccess,
+      error: this.saveError
     });
 
+  },
+
+  saveSuccess: function(model) {
+    console.log("Note saved in db!", model);
+    this.destroy();
+  },
+
+  saveError: function(error) {
+    console.log('Note unable to save in db', error);
   }
 
 });
