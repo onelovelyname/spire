@@ -213,6 +213,11 @@ td.habitAction {
   cursor: pointer;
 }
 
+.empty-habit-ui {
+  padding: .5em;
+  border-radius: 5px;
+}
+
 /* NOTES VIEW */
 
 .note-ui {
