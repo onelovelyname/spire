@@ -4,7 +4,7 @@ app.NoteView = Marionette.ItemView.extend({
 
   tagName: 'tr',
 
-  template: _.template("<h4><%= getDate() %> - <%= location %></h4><p><%= text %></p>"),
+  template: _.template("<td><%= getDate() %></td><td><%= text %></td><td><%= location %>"),
 
   templateHelpers: function() {
     

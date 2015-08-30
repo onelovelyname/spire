@@ -24,6 +24,7 @@ app.Router = Backbone.Router.extend({
     $('#header-region').addClass("header-ui");
     $('#form-region').addClass("form-ui");
 
+
     habitsView.collection.fetch({
 
       success: function(collection) {
