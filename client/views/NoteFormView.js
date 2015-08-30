@@ -14,11 +14,12 @@ app.NoteFormView = Marionette.ItemView.extend({
     _.bindAll(this, "saveSuccess", "saveError");
   },
 
-  addNote: function(model, noteText, today) {
+  addNote: function(model, noteText, noteLocation, today) {
 
     var notes = model.get('notes');
     var newNote = {
       text: noteText,
+      location: noteLocation,
       start_date: today,
       habit_id: model.get('id')
     };
@@ -50,9 +51,11 @@ app.NoteFormView = Marionette.ItemView.extend({
     event.preventDefault();
 
     var noteText = this.$('#noteText').val();
+    var noteLocation = this.$('#noteLocation').val();
+   
     var today = Date.parse(habitsView.getDay("today"));
 
-    var newNotes = this.addNote(this.model, noteText, today);
+    var newNotes = this.addNote(this.model, noteText, noteLocation, today);
     
     this.model.set("notes", newNotes);
 

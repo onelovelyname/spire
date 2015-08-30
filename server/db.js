@@ -62,6 +62,7 @@ db.knex.schema.hasTable('users').then(function(exists) {
                         note.increments('id').primary();
                         note.integer('habit_id').references('habits.id');
                         note.string('text');
+                        note.string('location');
                         note.date('start_date');
                       }).then(function(table){
                         console.log('Created Notes Table', table);
