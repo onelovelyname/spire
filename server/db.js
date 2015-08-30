@@ -17,7 +17,7 @@ var types = pg.types;
 
 var DATE_OID = 1082;
 types.setTypeParser(DATE_OID, function(value) {
-  return value === null ? null : moment.utc(value).format("YYYY-MM-DD");
+  return value === null ? null : moment.utc(value).local().format("YYYY-MM-DD");
 });
 
 var db = require('bookshelf')(knex);

@@ -1,12 +1,12 @@
 var HabitCompletion = require('./habitCompletionModel');
 var Habit = require('../habit/habitModel.js');
 var Helper = require('../config/helpers.js');
+var moment = require('moment');
 
 module.exports = {
 
   saveCompletion: function(completion) {
 
-    console.log("completion in saveCompletion: ", completion);
     return new Promise(function(resolve, reject) {
 
       new HabitCompletion({'habit_id': completion.habit_id, 'start_date': Helper.getDay("today")})
@@ -21,7 +21,10 @@ module.exports = {
               'status': completion.status
             }).save({}, {method: 'insert'})
             .then(function(completion) {
-              console.log('completion in saveCompletion', completion);
+              console.log('completion in saveCompletion: ', completion);
+              completion.attributes.start_date = moment.utc(completion.attributes.start_date).local().format("YYYY-MM-DD");
+              completion.attributes.end_date = moment.utc(completion.attributes.end_date).local().format("YYYY-MM-DD");
+
               resolve(completion);
             })
             .catch(function(error) {
