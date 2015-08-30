@@ -20,8 +20,8 @@ module.exports = {
       mm='0'+mm;
     }
 
-    //day = mm + '/' + dd + '/' + yyyy;
     day = yyyy + '-' + mm + '-' + dd;
+    console.log("day in Helper: ", day);
 
     return day;
 
