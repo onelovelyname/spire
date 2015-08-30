@@ -66,6 +66,8 @@ app.HabitView = Marionette.ItemView.extend({
   createNoteForm: function() {
 
     layoutView.getRegion('noteForm').show(new app.NoteFormView({ model: this.model }));
+    $('#note-form-region').addClass('note-form-ui');
+
   },
   
   templateHelpers: function() {

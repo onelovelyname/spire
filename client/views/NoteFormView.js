@@ -4,6 +4,8 @@ app.NoteFormView = Marionette.ItemView.extend({
 
   tagName: "form",
 
+  className: "pure-form",
+
   template: Handlebars.compile($('#noteFormTemplate').html()),
 
   events: {
