@@ -4,7 +4,7 @@ app.NoteView = Marionette.ItemView.extend({
 
   tagName: 'tr',
 
-  template: _.template("<td><%= getDate() %></td><td><%= text %></td><td><%= location %>"),
+  template: _.template("<td><%= getDate() %></td><td><%= text %></td>"),
 
   templateHelpers: function() {
     
@@ -13,8 +13,6 @@ app.NoteView = Marionette.ItemView.extend({
     return {
 
       text: this.model.get('text'),
-
-      location: this.model.get('location') || "San Francisco",
 
       getDate: function() {
         console.log("date type: ", typeof context.model.get("start_date"));
