@@ -6,8 +6,6 @@ app.NotesView = Marionette.CompositeView.extend({
 
   childView: app.NoteView,
 
-  emptyView: EmptyNoteView,
-
   childViewContainer: 'tbody',
 
   childEvents: {

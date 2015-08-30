@@ -7,25 +7,12 @@ var app = app || {};
 app.HabitsView = Marionette.CompositeView.extend({
   
   template: Handlebars.compile($('#habitsTemplate').html()),
-  
-  // getTemplate: function() {
-  //   var emptyTemplate = _.template("<div><h2>Your Habits</h2><table><tbody></tbody></table></div>");
-    
-  //   if(this.collection.length === 0) {
-  //     return emptyTemplate;
-  //   } else {
-  //     return Handlebars.compile($('#habitsTemplate').html());
-  //   }
-
-  // },
-
+      
   collection: habitsCollection,
   
   childView: app.HabitView,
 
   childViewContainer: "tbody",
-
-  emptyView: EmptyHabitView,
 
   appEvents: {
     "resize": function() {
