@@ -22,9 +22,6 @@ module.exports = {
             }).save({}, {method: 'insert'})
             .then(function(completion) {
               console.log('completion in saveCompletion: ', completion);
-              completion.attributes.start_date = moment.utc(completion.attributes.start_date).local().format("YYYY-MM-DD");
-              completion.attributes.end_date = moment.utc(completion.attributes.end_date).local().format("YYYY-MM-DD");
-
               resolve(completion);
             })
             .catch(function(error) {
