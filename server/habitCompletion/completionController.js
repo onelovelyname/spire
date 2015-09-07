@@ -37,7 +37,6 @@ module.exports = {
 
   saveRecurringCompletion: function(habit) {
 
-    console.log("habit in saveRecurringCompletion:", habit);
     return new Promise(function(resolve, reject) {
 
       new HabitCompletion({'habit_id': habit.id, 'start_date': Helper.getDay("today")})
