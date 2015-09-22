@@ -1,9 +1,5 @@
 var app = app || {};
 
-//////////////////////////////////////////////////////////
-////////////    Marionette Implementation     ////////////
-//////////////////////////////////////////////////////////
-
 app.HabitView = Marionette.ItemView.extend({
 
   template: _.template("<td><button id='<%= modelId %>' class='button-success pure-button'>Complete</button></td><td data-id='<%= modelId %>' class='habitAction'><%= action %></td><td><%= quantity %></td><td><%= calculateStatus(getStatusFromModel()) %></td>"),
@@ -118,19 +114,3 @@ app.HabitView = Marionette.ItemView.extend({
 
 
 });
-
-//////////////////////////////////////////////////////////
-////////////    Backbone Implementation     //////////////
-//////////////////////////////////////////////////////////
-
-// app.HabitView = Backbone.View.extend({
-
-//   tagName: 'tr',
-
-//   template: Handlebars.compile($('#habitTemplate').html()),
-
-//   render: function() {
-//     return this.$el.html(this.template(this.model.attributes));
-//   }
-  
-// });

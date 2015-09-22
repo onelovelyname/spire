@@ -8,6 +8,4 @@ app.HabitCompletion = Backbone.Model.extend({
     status: 0
   }
 
-  //url: "api/habitCompletion"
-
 });

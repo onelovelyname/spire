@@ -17,8 +17,9 @@ app.NoteView = Marionette.ItemView.extend({
       location: this.model.get('location') || "San Francisco",
 
       getDate: function() {
-        console.log("date type: ", typeof context.model.get("start_date"));
+
         var newDay;
+
         if (typeof context.model.get("start_date") === 'number') {
           newDay = new Date(context.model.get('start_date'));
         } else {

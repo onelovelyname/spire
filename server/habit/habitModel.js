@@ -14,6 +14,4 @@ var Habit = db.Model.extend({
 
 });
 
-//module.exports = Habit;
-
 module.exports = db.model('Habit', Habit);
