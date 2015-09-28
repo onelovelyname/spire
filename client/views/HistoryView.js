@@ -8,24 +8,29 @@ app.HistoryView = Marionette.ItemView.extend({
     "change:status": "render updateChart"
   },
 
-  showChart: function() {
-    
-    app.Chart.processData(this.model).then(function(processedData) {
-      app.Chart.createChart(processedData, '#history-region');
-    });
-
-  },
-
   initialize: function() {
     var context = this;
 
     $(window).on("resize", function() {
-      console.log("resizing heard!");
       context.showChart();
     });
 
     _.extend(this.model.get("completions"), Backbone.Events);
     this.bindEntityEvents(this.model.get("completions"), this.completionEvents);
+
+  },
+  
+  onShow: function() {
+
+    this.showChart();
+
+  },
+
+  showChart: function() {
+    
+    app.Chart.processData(this.model).then(function(processedData) {
+      app.Chart.createChart(processedData, '#history-region');
+    });
 
   },
 
@@ -37,11 +42,6 @@ app.HistoryView = Marionette.ItemView.extend({
   
   },
 
-  onShow: function() {
-
-    this.showChart();
-
-  },
 
   templateHelpers: function () {
 

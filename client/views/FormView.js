@@ -21,9 +21,10 @@ app.FormView = Marionette.ItemView.extend({
 
     var notesCollection = new app.Notes();
 
-    // create new Habit model inside of HabitsCollection
+    // create new Habit Model inside of HabitsCollection
+    // add initial completion to habitCompletionsCollection
 
-    habitsCollection.create({
+    app.habitsCollection.create({
       action: habitAction,
       quantity: Number(habitQuantity),
       completions: habitCompletionsCollection,
@@ -32,8 +33,8 @@ app.FormView = Marionette.ItemView.extend({
       success: function (habit) {
         console.log("habit created: ", habit);
         habit.get("completions").create({
-          start_date: habitsView.getDay("today"),
-          end_date: habitsView.getDay("tomorrow"),
+          start_date: app.habitsView.getDay("today"),
+          end_date: app.habitsView.getDay("tomorrow"),
           status: 0 / Number(habitQuantity),
           habit_id: habit.id
         }, {

@@ -55,7 +55,7 @@ app.NoteFormView = Marionette.ItemView.extend({
     var noteText = this.$('#noteText').val();
     var noteLocation = this.$('#noteLocation').val();
    
-    var today = Date.parse(habitsView.getDay("today"));
+    var today = Date.parse(app.habitsView.getDay("today"));
 
     var newNotes = this.addNote(this.model, noteText, noteLocation, today);
     
@@ -69,6 +69,7 @@ app.NoteFormView = Marionette.ItemView.extend({
 
   },
 
+  // if note successfully saves to db, destroy NoteFormView
   saveSuccess: function(model) {
     console.log("Note saved in db!", model);
     this.destroy();

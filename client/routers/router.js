@@ -1,10 +1,5 @@
 app.Router = Backbone.Router.extend({
 
-  initialize: function() {
-    console.log("router initialized!");
-    app.getRegion('appRegion').show(layoutView);
-  },
-
   routes: {
 
     "": "login",
@@ -12,49 +7,58 @@ app.Router = Backbone.Router.extend({
 
   },
 
-  login: function() {
-    layoutView.getRegion('content').show(new app.LoginView());
+  initialize: function() {
+
+    app.layoutView = new app.LayoutView();
+    app.getRegion('appRegion').show(app.layoutView);
+  
   },
 
+  login: function() {
+
+    app.layoutView.getRegion('content').show(new app.LoginView());
+  
+  },
+
+  // three regions in home: header, form, and main
   home: function(arg) {
 
-    layoutView.getRegion('form').show(new app.FormView());
+    app.layoutView.getRegion('header').show(new app.HeaderView({
+      attributes: { name: arg.passport.user.name }
+    }));
 
+    app.layoutView.getRegion('form').show(new app.FormView());
+
+    app.habitsView = new app.HabitsView({collection: app.habitsCollection});
+
+    // fetch habits with user's github id
+    // attach completions and notes to habits as Backbone Collections
+    app.habitsCollection.fetch({
+
+      success: function(collection) {
+        collection.attachCollectionstoHabit(collection).then(function() {
+          app.layoutView.getRegion('main').show(app.habitsView);
+        });
+      },
+
+      error: function(error) {
+        console.error("There was an error fetching your habits");
+      }
+
+    });
+
+    // add classes for styling
     $('html').addClass("home-ui");
     $('#header-region').addClass("header-ui");
     $('#form-region').addClass("form-ui");
 
-    habitsView.collection.fetch({
-
-      success: function(collection) {
-
-        collection.attachCollectionstoHabit(collection).then(function() {
-          console.log("collection in home: ", collection);
-          layoutView.getRegion('main').show(habitsView);
-
-        });
-        
-      },
-      error: function(error) {
-        console.error("There was an error fetching your habits");
-      }
-    });
-
-    layoutView.getRegion('header').show(new app.HeaderView({
-      attributes: {
-        name: arg.passport.user.name
-      }
-    }));
-
   },
-
 
   execute: function(callback, args, name) {
    
     var context = this;
 
     $.get('/api/auth/user', function(session) {
-
       if(!session.passport.user) {
         context.login();
         return false;
@@ -70,11 +74,3 @@ app.Router = Backbone.Router.extend({
   },
 
 });
-
-app.on('start', function() {
-  var router = new app.Router();
-  Backbone.history.start();
-  console.log("Marionette app instantiated and started!");
-});
-
-app.start();

@@ -49,7 +49,7 @@ app.Habit = Backbone.Model.extend({
 
     var model = this;
     var quantity = this.get("quantity");
-    var today = Date.parse(habitsView.getDay("today"));
+    var today = Date.parse(app.habitsView.getDay("today"));
 
     this.updateCompletions(model, quantity, today);
 

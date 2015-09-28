@@ -8,8 +8,6 @@ app.HeaderView = Marionette.ItemView.extend({
 
   templateHelpers: function() {
 
-    console.log("this.attributes.name: ", this.attributes.name);
-
     return {
       name: this.attributes.name
     };

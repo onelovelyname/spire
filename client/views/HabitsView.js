@@ -3,8 +3,6 @@ var app = app || {};
 app.HabitsView = Marionette.CompositeView.extend({
   
   template: Handlebars.compile($('#habitsTemplate').html()),
-
-  collection: habitsCollection,
   
   childView: app.HabitView,
 
@@ -14,7 +12,6 @@ app.HabitsView = Marionette.CompositeView.extend({
 
   appEvents: {
     "resize": function() {
-      console.log("resize heard in HabitsView");
 
       var childViews = this.children._views;
       for (var viewName in childViews) {
@@ -71,5 +68,3 @@ app.HabitsView = Marionette.CompositeView.extend({
   }
 
 });
-
-var habitsView = new app.HabitsView();

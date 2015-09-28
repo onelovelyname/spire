@@ -15,7 +15,6 @@ app.HabitView = Marionette.ItemView.extend({
 
     "click button": function(event) {
       this.model.updateStatus(event);
-      console.log("button click heard and updateStatus called");
     },
 
     "click .habitAction": function(event) {
@@ -31,7 +30,6 @@ app.HabitView = Marionette.ItemView.extend({
     }
 
   },
-
   
   initialize: function() {
 
@@ -41,7 +39,7 @@ app.HabitView = Marionette.ItemView.extend({
 
   showAside: function(model) {
 
-    layoutView.getRegion('history').show(new app.HistoryView({model: model}));
+    app.layoutView.getRegion('history').show(new app.HistoryView({model: model}));
 
     var notesArray = model.get("notes");
     if(Array.isArray(notesArray)) {
@@ -51,17 +49,16 @@ app.HabitView = Marionette.ItemView.extend({
     }
 
     var newView = new app.NotesView({collection: model.get("notes")});
-    layoutView.getRegion("notes").show(newView);
+    app.layoutView.getRegion("notes").show(newView);
 
     $('#history-region').addClass('history-home-ui');
     $('#notes-region').addClass('notes-home-ui');
-
 
   },
 
   createNoteForm: function() {
 
-    layoutView.getRegion('noteForm').show(new app.NoteFormView({ model: this.model }));
+    app.layoutView.getRegion('noteForm').show(new app.NoteFormView({ model: this.model }));
     $('#note-form-region').addClass('note-form-ui');
 
   },
@@ -69,8 +66,6 @@ app.HabitView = Marionette.ItemView.extend({
   templateHelpers: function() {
 
     var model = this.model;
-
-    var millisecondsInDay = 86400000;
     
     return {
 
@@ -93,7 +88,7 @@ app.HabitView = Marionette.ItemView.extend({
 
       getStatusFromModel: function() {
 
-        var today = Date.parse(habitsView.getDay("today"));
+        var today = Date.parse(app.habitsView.getDay("today"));
         
         var completionsCollection = model.get("completions");
 

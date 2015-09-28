@@ -16,6 +16,3 @@ app.LayoutView = Marionette.LayoutView.extend({
   }
 
 });
-
-var layoutView = new app.LayoutView();
-
