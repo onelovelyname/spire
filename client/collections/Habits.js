@@ -22,6 +22,6 @@ app.Habits = Backbone.Collection.extend({
 
     });
 
-  },
+  }
 
 });
